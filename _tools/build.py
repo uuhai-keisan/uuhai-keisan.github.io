@@ -157,6 +157,7 @@ def foot(prefix, scripts=()):
     return f'''<footer class="site-footer"><div class="wrap">
   <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
   <p><a href="{prefix}about/">運営者・プライバシーポリシー</a> / 運営: <a href="{X_URL}" rel="noopener" data-track="follow_click">@{SITE['x_handle']}</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
 </div></footer>
 {tags}<script src="{a('site.js')}"></script>
 </body>
