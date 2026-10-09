@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>試験日から逆算する勉強ペース計算|1日何ページ進めれば間に合うか</title>
+<meta name="description" content="試験日と教材の総ページ数、終わったページ数、何周するか、週に勉強する日数を入れると、復習期間を除いた進める日数と1日あたりに進めるページ数のノルマが分かります。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/benkyo-gyakusan/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="試験日から逆算する勉強ペース計算|1日何ページ進めれば間に合うか">
+<meta property="og:description" content="試験日と教材の総ページ数、終わったページ数、何周するか、週に勉強する日数を入れると、復習期間を除いた進める日数と1日あたりに進めるページ数のノルマが分かります。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/benkyo-gyakusan/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/benkyo-gyakusan.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=eecd14eb">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "試験日から逆算する勉強ペース計算",
+  "url": "https://uuhai-keisan.github.io/benkyo-gyakusan/",
+  "description": "試験日と教材の総ページ数、終わったページ数、何周するか、週に勉強する日数を入れると、復習期間を除いた進める日数と1日あたりに進めるページ数のノルマが分かります。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-10-09",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "試験日から逆算する勉強ペース計算",
+      "item": "https://uuhai-keisan.github.io/benkyo-gyakusan/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › 勉強・資格</nav>
+  <h1>試験日から逆算する勉強ペース計算</h1>
+  <p class="lead">試験日と教材の総ページ数、終わったページ数、何周するか、週に勉強する日数を入れると、復習期間を除いた進める日数と1日あたりに進めるページ数のノルマが分かります。</p>
+  <p class="updated">最終更新: <time datetime="2026-10-09">2026年10月9日</time></p>
+  <p class="tldr">進める日数は「(試験前日までの日数−復習期間)×週の勉強日数÷7」を切り捨てた数です。残りページをその日数で割って切り上げると、1日のノルマになります。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="試験まで{days}日、1日{pace}ページ進めれば間に合う計算" novalidate>
+      <div class="field"><label for="in-exam">試験日</label><div class="input-wrap"><input type="date" id="in-exam" name="exam" data-offset-days="60"></div></div><div class="field"><label for="in-total">教材の総ページ数<span class="sr-only">(単位: ページ)</span></label><div class="input-wrap has-unit"><input type="number" id="in-total" name="total" inputmode="numeric" min="1" max="100000" value="320"><span class="unit" aria-hidden="true">ページ</span></div></div><div class="field"><label for="in-done">もう終わったページ数<span class="sr-only">(単位: ページ)</span></label><div class="input-wrap has-unit"><input type="number" id="in-done" name="done" inputmode="numeric" min="0" max="100000" value="0"><span class="unit" aria-hidden="true">ページ</span></div></div><fieldset class="field"><legend>何周するか</legend><div class="seg"><label class="seg-opt"><input type="radio" name="rounds" value="1" checked><span>1周</span></label><label class="seg-opt"><input type="radio" name="rounds" value="2"><span>2周</span></label><label class="seg-opt"><input type="radio" name="rounds" value="3"><span>3周</span></label></div></fieldset><fieldset class="field"><legend>1週間に勉強する日数</legend><div class="seg"><label class="seg-opt"><input type="radio" name="perweek" value="7"><span>毎日</span></label><label class="seg-opt"><input type="radio" name="perweek" value="6" checked><span>週6日</span></label><label class="seg-opt"><input type="radio" name="perweek" value="5"><span>週5日</span></label><label class="seg-opt"><input type="radio" name="perweek" value="4"><span>週4日</span></label><label class="seg-opt"><input type="radio" name="perweek" value="3"><span>週3日</span></label></div></fieldset><div class="field"><label for="in-review">試験前の復習期間(新しく進めない日数)<span class="sr-only">(単位: 日)</span></label><div class="input-wrap has-unit"><input type="number" id="in-review" name="review" inputmode="numeric" min="0" max="365" value="7"><span class="unit" aria-hidden="true">日</span></div></div>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-x" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>この結果をXにポスト</button>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>使い方</h2>
+    <ol><li>「試験日」と「教材の総ページ数」を入れ、「もう終わったページ数」があれば入れます。</li><li>「何周するか」と「1週間に勉強する日数」を選びます。</li><li>「試験前の復習期間(新しく進めない日数)」を初期値7のままか、自分の計画に合わせて変えます。</li><li>進める日数と1日のノルマ(ページ数)が表示されます。</li></ol>
+    <h2>計算のしかた</h2>
+    <p>まず、今日から試験日の前日までの日数を数えます。今日を含み、試験当日は含みません。そこから「試験前の復習期間」を引きます。復習期間は、新しいページを進めない日数です。</p><p>残った日数に、1週間に勉強する日数の割合をかけます。毎日なら7分の7、週6日なら7分の6、週3日なら7分の3です。小数は切り捨てて、この日数を「進める日数」とします。曜日の指定はできないので、どの日を休みにするかは自由です。</p><p>残りページは「(総ページ数−もう終わったページ数)+総ページ数×(周回数−1)」です。2周以上する場合は、2周目以降を最初から通して読む前提で、総ページ数を周回数の分だけ足しています。</p><p>1日のノルマは「残りページ÷進める日数」で、小数は切り上げます。</p>
+    <h2>計算例</h2>
+    <p>試験まで60日・総ページ320・未着手・1周・週6日・復習7日の場合です。進める日数は(60−7)×6÷7=53×6÷7=45.4…で、切り捨てて45日になります。1日のノルマは320÷45≒7.1で、切り上げて1日8ページです。</p><p>同じ条件で2周する場合、残りページは320+320×(2−1)=640ページです。640÷45≒14.2なので、切り上げて1日15ページになります。</p>
+    <h2>早見表</h2>
+    <p>週6日勉強・試験前の復習7日・1周の場合です。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="教材のページ数と試験までの日数ごとの1日のノルマ">
+      <table class="quick-table"><caption>教材のページ数と試験までの日数ごとの1日のノルマ</caption>
+        <thead><tr><th scope="col">ページ数 \ 試験まで</th><th scope="col">30日</th><th scope="col">60日</th><th scope="col">90日</th><th scope="col">180日</th></tr></thead>
+        <tbody><tr><th scope="row">200ページ</th><td>11ページ/日</td><td>5ページ/日</td><td>3ページ/日</td><td>2ページ/日</td></tr><tr><th scope="row">300ページ</th><td>16ページ/日</td><td>7ページ/日</td><td>5ページ/日</td><td>3ページ/日</td></tr><tr><th scope="row">500ページ</th><td>27ページ/日</td><td>12ページ/日</td><td>8ページ/日</td><td>4ページ/日</td></tr><tr><th scope="row">800ページ</th><td>43ページ/日</td><td>18ページ/日</td><td>12ページ/日</td><td>6ページ/日</td></tr></tbody>
+      </table>
+    </div>
+    <h2>よくある質問</h2>
+    <div class="faq"><details><summary>試験日当日は勉強する日に数えられますか?</summary><p>数えません。このツールは今日から試験日の前日までを日数として扱います。試験当日に見直しをするかどうかは、計算とは別に自分で決めてください。</p></details><details><summary>復習期間はどのくらいにすればよいですか?</summary><p>初期値は7日ですが、決まった基準はありません。模擬試験を解く日や、間違えた部分を見直す日をどれだけ取りたいかで決めてください。復習期間を長くすると進める日数が減り、1日のノルマは増えます。</p></details><details><summary>週3日しか勉強できない場合でも使えますか?</summary><p>使えます。「1週間に勉強する日数」で週3日を選ぶと、進める日数に7分の3をかけて計算します。ただし曜日の指定はできないので、どの日に勉強するかは自分で割り振ってください。</p></details><details><summary>「新しく進める日が残りません」と表示されました。どうすればよいですか?</summary><p>試験までの日数から復習期間を引くと、進める日が1日も残らない状態です。復習期間を短くするか、1週間に勉強する日数を増やしてください。それでも足りない場合は、教材の範囲をしぼることも考えてください。</p></details></div>
+    <h2>出典・前提</h2>
+    <p>この計算は入力値どうしの四則演算だけで、外部のデータは使っていません。</p>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../kajidaiko/">🧹 家事代行は元が取れるか計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../reizouko-yoryo/">🧊 冷蔵庫の容量の目安を計算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../sentakuki-yoryo/">🧺 洗濯機の容量計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+</div></footer>
+<script src="calc.js?v=7cb83079"></script>
+<script src="../assets/site.js?v=f0900724"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>部屋の照明の明るさとダウンライト台数|畳数からルーメンの目安を計算</title>
+<meta name="description" content="部屋の広さ(畳数)を選ぶと、日本照明工業会のガイドに基づく明るさの目安(ルーメン)が分かります。ダウンライト1台の明るさを入れると、必要な台数の目安も計算できます。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/shoumei-lumen/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="部屋の照明の明るさとダウンライト台数|畳数からルーメンの目安を計算">
+<meta property="og:description" content="部屋の広さ(畳数)を選ぶと、日本照明工業会のガイドに基づく明るさの目安(ルーメン)が分かります。ダウンライト1台の明るさを入れると、必要な台数の目安も計算できます。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/shoumei-lumen/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/shoumei-lumen.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=eecd14eb">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "部屋の照明の明るさとダウンライト台数",
+  "url": "https://uuhai-keisan.github.io/shoumei-lumen/",
+  "description": "部屋の広さ(畳数)を選ぶと、日本照明工業会のガイドに基づく明るさの目安(ルーメン)が分かります。ダウンライト1台の明るさを入れると、必要な台数の目安も計算できます。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-10-09",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部屋の照明の明るさとダウンライト台数",
+      "item": "https://uuhai-keisan.github.io/shoumei-lumen/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › 暮らし</nav>
+  <h1>部屋の照明の明るさとダウンライト台数</h1>
+  <p class="lead">部屋の広さ(畳数)を選ぶと、日本照明工業会のガイドに基づく明るさの目安(ルーメン)が分かります。ダウンライト1台の明るさを入れると、必要な台数の目安も計算できます。</p>
+  <p class="updated">最終更新: <time datetime="2026-10-09">2026年10月9日</time></p>
+  <p class="tldr">畳数ごとに決められた標準定格光束(明るさの目安、単位はlm)を表から引き、ダウンライト1台の明るさで割って台数を出します。明るさの合計だけで出した目安です。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="{tatami}畳の部屋の明るさの目安は{lm}lmでした。" novalidate>
+      <div class="field"><label for="in-tatami">部屋の広さ</label><select id="in-tatami" name="tatami"><option value="4.5">4.5畳</option><option value="6" selected>6畳</option><option value="8">8畳</option><option value="10">10畳</option><option value="12">12畳</option><option value="14">14畳</option></select></div><fieldset class="field"><legend>明るさ</legend><div class="seg"><label class="seg-opt"><input type="radio" name="bright" value="std" checked><span>標準</span></label><label class="seg-opt"><input type="radio" name="bright" value="up"><span>1ランク明るく</span></label></div></fieldset><div class="field"><label for="in-per">ダウンライト1台の明るさ<span class="sr-only">(単位: lm)</span></label><div class="input-wrap has-unit"><input type="number" id="in-per" name="per" inputmode="numeric" min="1" value="500"><span class="unit" aria-hidden="true">lm</span></div></div>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-x" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>この結果をXにポスト</button>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>使い方</h2>
+    <ol><li>「部屋の広さ」で、4.5畳から14畳までの中から照らしたい部屋の広さを選びます。</li><li>「明るさ」で、標準か1ランク明るくするかを選びます。</li><li>ダウンライトを使う場合は「ダウンライト1台の明るさ」に、製品の全光束(lm)を入れます。</li><li>その広さの明るさの目安(lm)と範囲、ダウンライトの台数の目安が表示されます。</li></ol>
+    <h2>計算のしかた</h2>
+    <p>明るさの単位はlm(ルーメン)です。光源から出る光の量を表します。これに対して、照らされる面の明るさはlx(ルクス)で表します。</p><p>このツールは、一般社団法人日本照明工業会のガイドA121-2014「住宅用カタログにおける適用畳数表示基準」の表(三菱電機の照明ページに掲載されているもの)を使います。畳数のランクごとに、標準定格光束と定格光束の範囲が決まっています。〜4.5畳は2,700lm(2,200〜3,199lm)、〜6畳は3,200lm(2,700〜3,699lm)、〜8畳は3,800lm(3,300〜4,299lm)、〜10畳は4,400lm(3,900〜4,899lm)、〜12畳は5,000lm(4,500〜5,499lm)、〜14畳は5,600lm(5,100〜6,099lm)です。標準定格光束は、各ランクで平均照度が100lxになる目安の光束です。</p><p>「1ランク明るく」を選ぶと、1つ上の畳数ランクの値を使います。三菱電機のページに「高齢者の方は、使用する畳数より1ランク上の畳数表示の器具をおすすめします」とあることに対応したものです。14畳で選んだ場合は、それより上のランクがないため14畳のランクのままです。16畳以上の部屋は照度均斉度を考慮して1器具での畳数表示が設けられていないため、このツールも14畳までです。</p><p>ダウンライトの台数は、標準定格光束÷ダウンライト1台の明るさ、で小数は切り上げます。明るさの合計だけで出した目安で、器具の配置や天井の高さで感じ方は変わります。より新しい版のガイドが出ている可能性もあるので、製品の適用畳数表示もあわせて確認してください。</p>
+    <h2>計算例</h2>
+    <p>6畳、明るさは標準、ダウンライト1台の明るさ500lmとします。〜6畳のランクにあたるので、標準定格光束は3,200lm、定格光束の範囲は2,700〜3,699lmです。ダウンライトの台数は3,200÷500=6.4で、切り上げて7台が目安です。</p><p>同じ6畳で「1ランク明るく」を選ぶと、〜8畳のランクの3,800lmが目安になります。ページの初期値にはこの例の数字が入っています。例として置いた値で、何かの基準ではありません。</p>
+    <h2>早見表</h2>
+    <p>標準の明るさ(各畳数ランクの標準定格光束)を、ダウンライトの明るさの合計でそろえる場合の台数です。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="部屋の広さとダウンライト1台の明るさごとの台数の目安">
+      <table class="quick-table"><caption>部屋の広さとダウンライト1台の明るさごとの台数の目安</caption>
+        <thead><tr><th scope="col">広さ \ 1台の明るさ</th><th scope="col">400lm</th><th scope="col">500lm</th><th scope="col">600lm</th><th scope="col">800lm</th></tr></thead>
+        <tbody><tr><th scope="row">4.5畳</th><td>7台</td><td>6台</td><td>5台</td><td>4台</td></tr><tr><th scope="row">6畳</th><td>8台</td><td>7台</td><td>6台</td><td>4台</td></tr><tr><th scope="row">8畳</th><td>10台</td><td>8台</td><td>7台</td><td>5台</td></tr><tr><th scope="row">10畳</th><td>11台</td><td>9台</td><td>8台</td><td>6台</td></tr><tr><th scope="row">12畳</th><td>13台</td><td>10台</td><td>9台</td><td>7台</td></tr><tr><th scope="row">14畳</th><td>14台</td><td>12台</td><td>10台</td><td>7台</td></tr></tbody>
+      </table>
+    </div>
+    <h2>よくある質問</h2>
+    <div class="faq"><details><summary>lm(ルーメン)とW(ワット)は何が違いますか。</summary><p>lmは光の量、Wは消費電力です。LEDは種類によって同じWでも光の量が違うので、明るさを比べるときはlmを見ます。製品のパッケージや仕様に全光束(lm)として書かれています。</p></details><details><summary>ダウンライトの台数どおりに付ければ、十分明るいですか。</summary><p>このツールの台数は明るさの合計だけで出した目安です。器具の配置や天井の高さ、壁や床の色によって感じ方は変わります。部屋の端まで均一に照らしたい場合は、照明メーカーの配灯の案内も参考にしてください。</p></details><details><summary>16畳以上の部屋はどうすればよいですか。</summary><p>基準としたガイドでは、16畳以上は照度均斉度を考慮し、1器具での畳数表示を設けていません。このツールも14畳までです。広い部屋は、複数の器具に分けて考えるか、メーカーの相談窓口で確認してください。</p></details><details><summary>この表はいつの基準ですか。古くはないですか。</summary><p>一般社団法人日本照明工業会のガイドA121-2014を使っています。より新しい版が出ている可能性があるので、購入する製品の適用畳数表示もあわせて確認してください。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://www.mitsubishielectric.co.jp/ldm/lighting/fixture/otherfixture/interior.html" rel="noopener">三菱電機「居室用シーリング」(日本照明工業会ガイドA121-2014「住宅用カタログにおける適用畳数表示基準」の表を掲載)</a>(適用畳数ランクと標準定格光束・定格光束の範囲)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../kajidaiko/">🧹 家事代行は元が取れるか計算</a></li><li><a href="../reizouko-yoryo/">🧊 冷蔵庫の容量の目安を計算</a></li><li><a href="../sentakuki-yoryo/">🧺 洗濯機の容量計算</a></li><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+</div></footer>
+<script src="calc.js?v=143ef5a8"></script>
+<script src="../assets/site.js?v=f0900724"></script>
+</body>
+</html>

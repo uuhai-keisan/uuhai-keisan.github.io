@@ -1,0 +1,13 @@
+{
+  "name": "uuhai計算帳",
+  "tagline": "会社員の数字まわり・暮らしの、ちょっと面倒な計算をすぐに。",
+  "base_url": "https://uuhai-keisan.github.io/",
+  "x_handle": "uuhai0625",
+  "operator": "uuhai",
+  "ga_id": "G-5WNZZSH1P4",
+  "categories": {
+    "study": "勉強・資格",
+    "work": "仕事・会社員",
+    "life": "暮らし"
+  }
+}

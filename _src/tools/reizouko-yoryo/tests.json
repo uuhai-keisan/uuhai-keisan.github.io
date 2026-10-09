@@ -1,0 +1,65 @@
+[
+  {
+    "name": "計算例 3人 常備品125L",
+    "today": "2026-10-09",
+    "input": {
+      "people": 3,
+      "stock": "125",
+      "extra": "0"
+    },
+    "expect": {
+      "value": 405,
+      "details": {
+        "シャープの式での3人の幅": "380〜430L"
+      }
+    }
+  },
+  {
+    "name": "4人 100L +50L",
+    "today": "2026-10-09",
+    "input": {
+      "people": 4,
+      "stock": "100",
+      "extra": "50"
+    },
+    "expect": {
+      "value": 500
+    }
+  },
+  {
+    "name": "1人 150L",
+    "today": "2026-10-09",
+    "input": {
+      "people": 1,
+      "stock": "150",
+      "extra": "0"
+    },
+    "expect": {
+      "value": 290
+    }
+  },
+  {
+    "name": "2人 100L",
+    "today": "2026-10-09",
+    "input": {
+      "people": 2,
+      "stock": "100",
+      "extra": "0"
+    },
+    "expect": {
+      "value": 310
+    }
+  },
+  {
+    "name": "人数0",
+    "today": "2026-10-09",
+    "input": {
+      "people": 0,
+      "stock": "125",
+      "extra": "0"
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

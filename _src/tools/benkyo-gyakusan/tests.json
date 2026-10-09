@@ -1,0 +1,117 @@
+[
+  {
+    "name": "解説の計算例(60日・320ページ・週6・復習7)",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-12-03",
+      "total": 320,
+      "done": 0,
+      "perweek": "6",
+      "review": 7
+    },
+    "expect": {
+      "value": 8
+    }
+  },
+  {
+    "name": "毎日・復習なし・割り切れる",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-10-14",
+      "total": 100,
+      "done": 50,
+      "perweek": "7",
+      "review": 0
+    },
+    "expect": {
+      "value": 5
+    }
+  },
+  {
+    "name": "試験日が今日",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-10-04",
+      "total": 100,
+      "done": 0,
+      "perweek": "7",
+      "review": 0
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "復習期間が長すぎる",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-10-10",
+      "total": 100,
+      "done": 0,
+      "perweek": "7",
+      "review": 6
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "終わっている",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-11-01",
+      "total": 100,
+      "done": 100,
+      "perweek": "7",
+      "review": 0
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "2周する(60日・320ページ・週6・復習7)",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-12-03",
+      "total": 320,
+      "done": 0,
+      "perweek": "6",
+      "review": 7,
+      "rounds": "2"
+    },
+    "expect": {
+      "value": 15
+    }
+  },
+  {
+    "name": "3周",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-12-03",
+      "total": 320,
+      "done": 0,
+      "perweek": "6",
+      "review": 7,
+      "rounds": "3"
+    },
+    "expect": {
+      "value": 22
+    }
+  },
+  {
+    "name": "終わったページが負",
+    "today": "2026-10-04",
+    "input": {
+      "exam": "2026-12-03",
+      "total": 320,
+      "done": -100,
+      "perweek": "6",
+      "review": 7,
+      "rounds": "1"
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

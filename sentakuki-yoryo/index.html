@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>洗濯機の容量計算|家族の人数と洗う頻度から何kgが目安か</title>
+<meta name="description" content="家族の人数と洗う頻度、シーツなどの余裕を選ぶと、1回に洗う洗濯物の量と、必要な洗濯容量の目安が分かります。家庭用の容量区分の中から当てはまる大きさを表示します。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/sentakuki-yoryo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="洗濯機の容量計算|家族の人数と洗う頻度から何kgが目安か">
+<meta property="og:description" content="家族の人数と洗う頻度、シーツなどの余裕を選ぶと、1回に洗う洗濯物の量と、必要な洗濯容量の目安が分かります。家庭用の容量区分の中から当てはまる大きさを表示します。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/sentakuki-yoryo/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/sentakuki-yoryo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=eecd14eb">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "洗濯機の容量計算",
+  "url": "https://uuhai-keisan.github.io/sentakuki-yoryo/",
+  "description": "家族の人数と洗う頻度、シーツなどの余裕を選ぶと、1回に洗う洗濯物の量と、必要な洗濯容量の目安が分かります。家庭用の容量区分の中から当てはまる大きさを表示します。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-10-09",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "洗濯機の容量計算",
+      "item": "https://uuhai-keisan.github.io/sentakuki-yoryo/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › 暮らし</nav>
+  <h1>洗濯機の容量計算</h1>
+  <p class="lead">家族の人数と洗う頻度、シーツなどの余裕を選ぶと、1回に洗う洗濯物の量と、必要な洗濯容量の目安が分かります。家庭用の容量区分の中から当てはまる大きさを表示します。</p>
+  <p class="updated">最終更新: <time datetime="2026-10-09">2026年10月9日</time></p>
+  <p class="tldr">1回に洗う量は「1.5kg×人数×何日分か」です。そこにシーツなどの余裕を足した量以上で、いちばん小さい容量が目安になります。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="洗濯機の容量の目安は{size}kg以上だった" novalidate>
+      <div class="field"><label for="in-people">家族の人数<span class="sr-only">(単位: 人)</span></label><div class="input-wrap has-unit"><input type="number" id="in-people" name="people" inputmode="numeric" min="1" max="10" value="3"><span class="unit" aria-hidden="true">人</span></div></div><fieldset class="field"><legend>洗う頻度</legend><div class="seg"><label class="seg-opt"><input type="radio" name="interval" value="1" checked><span>毎日</span></label><label class="seg-opt"><input type="radio" name="interval" value="2"><span>2日に1回</span></label><label class="seg-opt"><input type="radio" name="interval" value="3"><span>3日に1回</span></label></div></fieldset><fieldset class="field"><legend>シーツなどの余裕</legend><div class="seg"><label class="seg-opt"><input type="radio" name="margin" value="0"><span>なし</span></label><label class="seg-opt"><input type="radio" name="margin" value="1" checked><span>+1kg</span></label><label class="seg-opt"><input type="radio" name="margin" value="2"><span>+2kg</span></label></div></fieldset>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-x" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>この結果をXにポスト</button>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>使い方</h2>
+    <ol><li>「家族の人数」に、洗濯物を一緒に洗う人数を入れます。</li><li>「洗う頻度」で、毎日・2日に1回・3日に1回のどれかを選びます。</li><li>「シーツなどの余裕」で、なし・+1kg・+2kgのどれかを選びます。</li><li>1回に洗う量と、目安となる洗濯容量が表示されます。</li></ol>
+    <h2>計算のしかた</h2>
+    <p>1回に洗う量は「1.5kg×家族の人数×何日分か」です。毎日洗うなら1日分、2日に1回なら2日分、3日に1回なら3日分で計算します。</p><p>1人1日約1.5kgという目安は、パナソニックの洗濯機の選び方ページによるものです。内訳の例として、ワイシャツ1枚(約200g)・長袖肌着1枚(約130g)・トランクス1枚(約80g)・綿パンツ1本(約400g)・タオル2枚(約70g)・くつ下1足(約50g)・パジャマ上下1着(約500g)が挙げられています。各衣類の重さの目安は日本電機工業会の自主基準によります。</p><p>必要な容量は、1回に洗う量に「シーツなどの余裕」を足したものです。家庭用の洗濯容量(4.5・5・6・7・8・9・10・11・12・13kg)の中から、必要な容量以上でいちばん小さいものを表示します。13kgを超える場合は「13kgでも不足」として、何回に分けて洗えばよいかを示します。</p><p>乾燥容量は洗濯容量より小さいことが多いので、乾燥まで使う予定なら乾燥容量も確認してください。</p>
+    <h2>計算例</h2>
+    <p>家族3人・2日に1回・余裕+1kgの場合です。1回に洗う量は1.5×3×2=9kgで、余裕を足すと9+1=10kgになります。家庭用の容量区分では10kg以上の洗濯機が目安です。</p>
+    <h2>早見表</h2>
+    <p>シーツなどの余裕を+1kgにした場合です。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="家族の人数と洗う頻度ごとの洗濯容量の目安">
+      <table class="quick-table"><caption>家族の人数と洗う頻度ごとの洗濯容量の目安</caption>
+        <thead><tr><th scope="col">人数 \ 頻度</th><th scope="col">毎日</th><th scope="col">2日に1回</th><th scope="col">3日に1回</th></tr></thead>
+        <tbody><tr><th scope="row">1人</th><td>4.5kg以上</td><td>4.5kg以上</td><td>6kg以上</td></tr><tr><th scope="row">2人</th><td>4.5kg以上</td><td>7kg以上</td><td>10kg以上</td></tr><tr><th scope="row">3人</th><td>6kg以上</td><td>10kg以上</td><td>13kgでも不足</td></tr><tr><th scope="row">4人</th><td>7kg以上</td><td>13kg以上</td><td>13kgでも不足</td></tr><tr><th scope="row">5人</th><td>9kg以上</td><td>13kgでも不足</td><td>13kgでも不足</td></tr><tr><th scope="row">6人</th><td>10kg以上</td><td>13kgでも不足</td><td>13kgでも不足</td></tr></tbody>
+      </table>
+    </div>
+    <h2>よくある質問</h2>
+    <div class="faq"><details><summary>小さい子どもがいる場合も1人1.5kgで計算してよいですか?</summary><p>このツールは年齢で区別せず、1人1日約1.5kgの目安をそのまま使っています。子どもの服は小さい一方で、着替えの回数が多いこともあります。家庭の実際の洗濯量に合わせて、「シーツなどの余裕」の選択で調整してください。</p></details><details><summary>毛布や布団カバーも洗いたいときはどう考えればよいですか?</summary><p>このツールは「シーツなどの余裕」として+1kgか+2kgを足すだけです。毛布のような大物は、容量だけでなく洗濯機ごとに洗えるものが決まっているので、購入前に取扱説明書やメーカーのページで確認してください。</p></details><details><summary>乾燥機能も使う予定です。表示された容量で足りますか?</summary><p>表示しているのは洗濯容量の目安です。乾燥容量は洗濯容量より小さいことが多いので、洗濯から乾燥まで一度に済ませたいなら、乾燥容量が1回に洗う量を上回るかを別に確認してください。</p></details><details><summary>「13kgでも不足」と表示されました。どうすればよいですか?</summary><p>1回に洗う量が家庭用の容量区分を超えています。ツールが表示する回数に分けて洗うか、洗う頻度を上げて1回あたりの量を減らすと、13kg以下の容量に収まります。頻度を変えて再計算してみてください。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://panasonic.jp/wash/select/capacity.html" rel="noopener">パナソニック「洗濯機の容量の選び方」</a>(1人1日約1.5kgの目安と内訳(日本電機工業会の自主基準))</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../kajidaiko/">🧹 家事代行は元が取れるか計算</a></li><li><a href="../reizouko-yoryo/">🧊 冷蔵庫の容量の目安を計算</a></li><li><a href="../shoumei-lumen/">💡 部屋の照明の明るさとダウンライト台数</a></li><li><a href="../zangyo-mikomi/">📈 残業時間の月末見込み計算</a></li><li><a href="../benkyo-gyakusan/">📚 試験日から逆算する勉強ペース計算</a></li><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+</div></footer>
+<script src="calc.js?v=3491a30c"></script>
+<script src="../assets/site.js?v=f0900724"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+[
+  {
+    "name": "計算例 時給2000 料金3000×2h 自分2h 月2回",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 2000,
+      "price": 3000,
+      "hours": 2,
+      "self": 2,
+      "times": 2,
+      "extra": 0
+    },
+    "expect": {
+      "value": 3000,
+      "details": {
+        "月の費用": "12,000円",
+        "月に浮く時間": "4時間",
+        "浮いた時間の価値(時給2,000円)": "8,000円",
+        "差し引き": "4,000円持ち出し"
+      }
+    }
+  },
+  {
+    "name": "時給4000なら得",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 4000,
+      "price": 3000,
+      "hours": 2,
+      "self": 2,
+      "times": 2,
+      "extra": 0
+    },
+    "expect": {
+      "details": {
+        "差し引き": "4,000円得"
+      }
+    }
+  },
+  {
+    "name": "交通費1000円",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 2000,
+      "price": 3000,
+      "hours": 2,
+      "self": 2,
+      "times": 2,
+      "extra": 1000
+    },
+    "expect": {
+      "value": 3500
+    }
+  },
+  {
+    "name": "自分だと3時間 月4回",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 2000,
+      "price": 3000,
+      "hours": 2,
+      "self": 3,
+      "times": 4,
+      "extra": 0
+    },
+    "expect": {
+      "value": 2000
+    }
+  },
+  {
+    "name": "回数0",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 2000,
+      "price": 3000,
+      "hours": 2,
+      "self": 2,
+      "times": 0,
+      "extra": 0
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "交通費が負",
+    "today": "2026-10-09",
+    "input": {
+      "wage": 2000,
+      "price": 3000,
+      "hours": 2,
+      "self": 2,
+      "times": 2,
+      "extra": -2000
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

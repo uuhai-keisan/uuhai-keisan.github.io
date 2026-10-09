@@ -1,0 +1,133 @@
+[
+  {
+    "name": "計算例 10/19開始 10/30時点40% 土日除く 予定11/13",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-19",
+      "progress": 40,
+      "days": "workdays",
+      "plan": "2026-11-13"
+    },
+    "expect": {
+      "value": "2026年11月20日(金)",
+      "details": {
+        "経過した作業日(土日を除く)": "10日",
+        "1日あたりの進み": "4%",
+        "残りの作業日(土日を除く)": "15日",
+        "予定の完了日との差": "5日遅れ"
+      }
+    }
+  },
+  {
+    "name": "毎日で数える",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-21",
+      "progress": 50,
+      "days": "every",
+      "plan": ""
+    },
+    "expect": {
+      "value": "2026年11月9日(月)",
+      "details": {
+        "経過した日": "10日",
+        "残りの日": "10日"
+      }
+    }
+  },
+  {
+    "name": "予定より早い",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-19",
+      "progress": 40,
+      "days": "workdays",
+      "plan": "2026-11-27"
+    },
+    "expect": {
+      "details": {
+        "予定の完了日との差": "5日早い"
+      }
+    }
+  },
+  {
+    "name": "完了済み",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-19",
+      "progress": 100,
+      "days": "workdays",
+      "plan": ""
+    },
+    "expect": {
+      "value": "完了済み"
+    }
+  },
+  {
+    "name": "開始日が未来",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-11-02",
+      "progress": 10,
+      "days": "workdays",
+      "plan": ""
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "進捗0%",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-19",
+      "progress": 0,
+      "days": "workdays",
+      "plan": ""
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "土日だけで作業日なし",
+    "today": "2026-11-01",
+    "input": {
+      "start": "2026-10-31",
+      "progress": 10,
+      "days": "workdays",
+      "plan": ""
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "進捗0.01%は10年超でエラー",
+    "today": "2026-10-30",
+    "input": {
+      "start": "2026-10-19",
+      "progress": 0.01,
+      "days": "workdays",
+      "plan": ""
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "今日が土曜(毎日なら計算できる)",
+    "today": "2026-10-31",
+    "input": {
+      "start": "2026-10-31",
+      "progress": 10,
+      "days": "every",
+      "plan": ""
+    },
+    "expect": {
+      "details": {
+        "経過した日": "1日"
+      }
+    }
+  }
+]

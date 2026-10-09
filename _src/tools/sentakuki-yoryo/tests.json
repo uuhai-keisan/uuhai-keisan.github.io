@@ -1,0 +1,68 @@
+[
+  {
+    "name": "計算例 3人 2日に1回 +1kg",
+    "input": {
+      "people": 3,
+      "interval": "2",
+      "margin": "1"
+    },
+    "expect": {
+      "value": 10,
+      "details": {
+        "必要な容量": "10kg"
+      }
+    },
+    "today": "2026-10-04"
+  },
+  {
+    "name": "1人 毎日 余裕なし",
+    "input": {
+      "people": 1,
+      "interval": "1",
+      "margin": "0"
+    },
+    "expect": {
+      "value": 4.5
+    },
+    "today": "2026-10-04"
+  },
+  {
+    "name": "4人 毎日 +1kg",
+    "input": {
+      "people": 4,
+      "interval": "1",
+      "margin": "1"
+    },
+    "expect": {
+      "value": 7
+    },
+    "today": "2026-10-04"
+  },
+  {
+    "name": "13kg超",
+    "input": {
+      "people": 4,
+      "interval": "3",
+      "margin": "1"
+    },
+    "expect": {
+      "value": "13kgでも不足",
+      "details": {
+        "13kgの洗濯機なら": "1回分を2回に分けて洗う"
+      }
+    },
+    "today": "2026-10-04"
+  },
+  {
+    "name": "人数0",
+    "input": {
+      "people": 0,
+      "interval": "1",
+      "margin": "1"
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-10-04"
+  }
+]

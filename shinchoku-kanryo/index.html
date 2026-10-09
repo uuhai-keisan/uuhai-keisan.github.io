@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>進捗率から完了予定日を出す計算|今のペースで終わる日はいつ</title>
+<meta name="description" content="開始日と今日時点の進捗率(%)を入れると、今までのペースが続いた場合の完了予定日と残りの作業日数が分かります。土日を除く設定や、予定の完了日に対して何作業日の遅れ・早さになるかも確認できます。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/shinchoku-kanryo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="進捗率から完了予定日を出す計算|今のペースで終わる日はいつ">
+<meta property="og:description" content="開始日と今日時点の進捗率(%)を入れると、今までのペースが続いた場合の完了予定日と残りの作業日数が分かります。土日を除く設定や、予定の完了日に対して何作業日の遅れ・早さになるかも確認できます。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/shinchoku-kanryo/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/shinchoku-kanryo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=eecd14eb">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "進捗率から完了予定日を出す計算",
+  "url": "https://uuhai-keisan.github.io/shinchoku-kanryo/",
+  "description": "開始日と今日時点の進捗率(%)を入れると、今までのペースが続いた場合の完了予定日と残りの作業日数が分かります。土日を除く設定や、予定の完了日に対して何作業日の遅れ・早さになるかも確認できます。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-10-09",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "進捗率から完了予定日を出す計算",
+      "item": "https://uuhai-keisan.github.io/shinchoku-kanryo/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › 仕事・会社員</nav>
+  <h1>進捗率から完了予定日を出す計算</h1>
+  <p class="lead">開始日と今日時点の進捗率(%)を入れると、今までのペースが続いた場合の完了予定日と残りの作業日数が分かります。土日を除く設定や、予定の完了日に対して何作業日の遅れ・早さになるかも確認できます。</p>
+  <p class="updated">最終更新: <time datetime="2026-10-09">2026年10月9日</time></p>
+  <p class="tldr">今日までの「1日あたりの進み」がこの先も続くと仮定して、残りの作業日と完了予定日を出します。予定の完了日を入れると、何作業日の遅れ・早さになるかも分かります。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="完了予定は{date}。残り{remain}作業日。" novalidate>
+      <div class="field"><label for="in-start">開始日</label><div class="input-wrap"><input type="date" id="in-start" name="start" data-offset-days="-14"></div></div><div class="field"><label for="in-progress">今日時点の進捗率<span class="sr-only">(単位: %)</span></label><div class="input-wrap has-unit"><input type="number" id="in-progress" name="progress" inputmode="numeric" min="0" max="100" value="40"><span class="unit" aria-hidden="true">%</span></div></div><fieldset class="field"><legend>作業する日</legend><div class="seg"><label class="seg-opt"><input type="radio" name="days" value="workdays" checked><span>土日を除く</span></label><label class="seg-opt"><input type="radio" name="days" value="every"><span>毎日</span></label></div></fieldset><div class="field"><label for="in-plan">予定の完了日(任意)</label><div class="input-wrap"><input type="date" id="in-plan" name="plan"></div></div>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-x" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>この結果をXにポスト</button>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>使い方</h2>
+    <ol><li>「開始日」に作業を始めた日を入れます。</li><li>「今日時点の進捗率」に、今日の分まで含めた進み具合を%で入れます。</li><li>「作業する日」で、土日を除くか毎日かを選びます。祝日や会社の休日は数えません。</li><li>比べたい期限があれば「予定の完了日(任意)」に入れます。完了予定日と、予定との差が表示されます。</li></ol>
+    <h2>計算のしかた</h2>
+    <p>まず、開始日から今日までの作業日数を数えます。今日も1日として含めます。「土日を除く」を選んだ場合は土曜日と日曜日を数えません。これを「経過した作業日」と呼びます。</p><p>次に、1日あたりの進みを出します。1日あたりの進み=今日時点の進捗率÷経過した作業日、です。残りの作業日=(100−進捗率)÷1日あたりの進み、で、小数が出た場合は切り上げます。</p><p>完了予定日は、今日の翌日から残りの作業日を数えた日です。土日を除く設定なら、土日を飛ばして数えます。予定の完了日を入れた場合は、完了予定日と予定の完了日の間の作業日数を数え、遅れか早いかを表示します。</p><p>この計算は、今までのペースがこの先もそのまま続くと仮定した単純な見込みです。祝日や会社の休日、作業量の変化は考えていません。</p>
+    <h2>計算例</h2>
+    <p>2026年10月19日(月)に開始し、10月30日(金)の時点で進捗率40%、作業する日は土日を除く、予定の完了日は11月13日(金)とします。開始日から今日までの作業日は、土日を除いて10日です。1日あたりの進みは40÷10=4%です。残りの作業日は(100−40)÷4=15作業日です。</p><p>今日の翌日から土日を除いて15作業日を数えると、完了予定日は2026年11月20日(金)になります。予定の完了日11月13日(金)と比べると、5作業日の遅れです。ページの初期値は、開始日を今日の14日前、進捗率を40%にしています。例として置いた値で、何かの基準ではありません。</p>
+    <h2>早見表</h2>
+    <p>毎日作業する場合の、完了までに残っている日数です。土日を除く場合は、作業日の数として読んでください。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="進捗率と経過日数ごとの、完了までに残る日数">
+      <table class="quick-table"><caption>進捗率と経過日数ごとの、完了までに残る日数</caption>
+        <thead><tr><th scope="col">進捗率 \ 経過</th><th scope="col">5日経過</th><th scope="col">10日経過</th><th scope="col">20日経過</th></tr></thead>
+        <tbody><tr><th scope="row">20%</th><td>20日</td><td>40日</td><td>80日</td></tr><tr><th scope="row">40%</th><td>8日</td><td>15日</td><td>30日</td></tr><tr><th scope="row">60%</th><td>4日</td><td>7日</td><td>14日</td></tr><tr><th scope="row">80%</th><td>2日</td><td>3日</td><td>5日</td></tr></tbody>
+      </table>
+    </div>
+    <h2>よくある質問</h2>
+    <div class="faq"><details><summary>進捗率は今日の分まで含めて入れるのですか。</summary><p>はい。今日の作業を終えた時点の進捗率を入れる前提です。今日の分がまだなら、昨日までの進捗率を入れたうえで、結果が1日ほど前後することを見込んでください。</p></details><details><summary>祝日や会社の休みは考えてくれますか。</summary><p>考えません。「土日を除く」を選んでも、祝日や会社独自の休日は作業日として数えます。休みが多い時期は、結果より完了が後ろにずれると考えてください。</p></details><details><summary>開始日と今日が同じ日でも計算できますか。</summary><p>できます。経過した作業日は1日になります。ただし「土日を除く」を選んでいて今日が土日の場合は、作業日が0日になるので計算できません。1日分のペースで先を見込むので、結果はかなり粗い目安です。数日たってから見直すと精度が上がります。</p></details><details><summary>途中でペースが変わった場合はどうなりますか。</summary><p>このツールは開始日から今日までの平均ペースで計算します。最近だけ速くなった、遅くなったという変化は反映されません。直近のペースで見たい場合は、開始日をペースが変わった日に置き換えて計算してみてください。</p></details></div>
+    <h2>出典・前提</h2>
+    <p>この計算は入力値どうしの四則演算だけで、外部のデータは使っていません。</p>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../teiki-tsudo/">🚃 在宅勤務の定期と都度払いの比較</a></li><li><a href="../zangyo-mikomi/">📈 残業時間の月末見込み計算</a></li><li><a href="../sentakuki-yoryo/">🧺 洗濯機の容量計算</a></li><li><a href="../shoumei-lumen/">💡 部屋の照明の明るさとダウンライト台数</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+</div></footer>
+<script src="calc.js?v=19a3b6f2"></script>
+<script src="../assets/site.js?v=f0900724"></script>
+</body>
+</html>

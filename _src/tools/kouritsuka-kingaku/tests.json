@@ -1,0 +1,105 @@
+[
+  {
+    "name": "計算例 15分 毎日1回 5人 時給3000 240日",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 15,
+      "freq": "day",
+      "times": 1,
+      "people": 5,
+      "wage": 3000,
+      "workdays": 240,
+      "cost": 0
+    },
+    "expect": {
+      "value": 900000,
+      "details": {
+        "年間で減らせる時間": "300時間",
+        "1か月あたり": "25時間・75,000円"
+      }
+    }
+  },
+  {
+    "name": "毎週30分 2人 2500円",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 30,
+      "freq": "week",
+      "times": 1,
+      "people": 2,
+      "wage": 2500,
+      "workdays": 240,
+      "cost": 0
+    },
+    "expect": {
+      "value": 130000
+    }
+  },
+  {
+    "name": "月額費用5000円を引く",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 15,
+      "freq": "day",
+      "times": 1,
+      "people": 5,
+      "wage": 3000,
+      "workdays": 240,
+      "cost": 5000
+    },
+    "expect": {
+      "details": {
+        "ツール代(年間)を引くと": "840,000円",
+        "月額費用と月の効果": "効果のほうが大きい"
+      }
+    }
+  },
+  {
+    "name": "毎月2回 60分 1人",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 60,
+      "freq": "month",
+      "times": 2,
+      "people": 1,
+      "wage": 2000,
+      "workdays": 240,
+      "cost": 0
+    },
+    "expect": {
+      "value": 48000
+    }
+  },
+  {
+    "name": "人数0",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 15,
+      "freq": "day",
+      "times": 1,
+      "people": 0,
+      "wage": 3000,
+      "workdays": 240,
+      "cost": 0
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "月額費用が負",
+    "today": "2026-10-09",
+    "input": {
+      "minutes": 15,
+      "freq": "day",
+      "times": 1,
+      "people": 5,
+      "wage": 3000,
+      "workdays": 240,
+      "cost": -100
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

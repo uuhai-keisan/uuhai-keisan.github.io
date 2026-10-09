@@ -1,0 +1,72 @@
+[
+  {
+    "name": "計算例 6畳 標準 500lm",
+    "today": "2026-10-09",
+    "input": {
+      "tatami": "6",
+      "bright": "std",
+      "per": 500
+    },
+    "expect": {
+      "value": 3200,
+      "details": {
+        "適用畳数のランク": "〜6畳",
+        "ダウンライトの台数の目安": "7台"
+      }
+    }
+  },
+  {
+    "name": "6畳 1ランク上 400lm",
+    "today": "2026-10-09",
+    "input": {
+      "tatami": "6",
+      "bright": "up",
+      "per": 400
+    },
+    "expect": {
+      "value": 3800,
+      "details": {
+        "ダウンライトの台数の目安": "10台"
+      }
+    }
+  },
+  {
+    "name": "14畳 1ランク上は14畳のまま",
+    "today": "2026-10-09",
+    "input": {
+      "tatami": "14",
+      "bright": "up",
+      "per": 800
+    },
+    "expect": {
+      "value": 5600
+    }
+  },
+  {
+    "name": "4.5畳 600lm",
+    "today": "2026-10-09",
+    "input": {
+      "tatami": "4.5",
+      "bright": "std",
+      "per": 600
+    },
+    "expect": {
+      "value": 2700,
+      "details": {
+        "ダウンライトの台数の目安": "5台"
+      }
+    }
+  },
+  {
+    "name": "1台の明るさ未入力",
+    "today": "2026-10-09",
+    "input": {
+      "tatami": "6",
+      "bright": "std",
+      "per": null
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]
