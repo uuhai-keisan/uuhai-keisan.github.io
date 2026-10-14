@@ -213,7 +213,7 @@ def table_html(t, today):
         f'<tr><th scope="row">{esc(rl)}</th>' + ''.join(f'<td>{esc(c)}</td>' for c in row) + '</tr>'
         for rl, row in zip(spec['rows']['labels'], cells))
     return f'''
-    <h2>早見表</h2>
+    <h2>{esc(t['kw'])}の早見表</h2>
     <p>{esc(spec['note'])}</p>
     <div class="table-scroll" tabindex="0" role="region" aria-label="{esc(spec['title'])}">
       <table class="quick-table"><caption>{esc(spec['title'])}</caption>
@@ -225,7 +225,6 @@ def table_html(t, today):
 
 def tool_page(t, tools, today):
     url = f'{BASE}{t["slug"]}/'
-    cat = SITE['categories'][t['category']]
     # 関連リンク: 同じカテゴリは全部、残りの枠はページごとに開始位置をずらして選ぶ(被リンクの偏りを防ぐ)
     live = [o for o in tools if not o.get('draft')]
     same = [o for o in live if o is not t and o['category'] == t['category']]
@@ -265,7 +264,7 @@ def tool_page(t, tools, today):
     make_og(os.path.join(APP, 'og', f'{t["slug"]}.png'), t['h1'], SITE['name'])
     calc_v = asset_hash(os.path.join(t['_dir'], 'calc.js'))
     body = f'''<main class="wrap" id="main">
-  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">{esc(SITE['name'])}</a> › {esc(cat)}</nav>
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">{esc(SITE['name'])}</a> › <span aria-current="page">{esc(t['h1'])}</span></nav>
   <h1>{esc(t['h1'])}</h1>
   <p class="lead">{esc(t['description'])}</p>
   <p class="updated">最終更新: <time datetime="{t['updated']}">{jp_date(t['updated'])}</time></p>
@@ -300,13 +299,13 @@ def tool_page(t, tools, today):
   </div>
 
   <section class="content">
-    <h2>使い方</h2>
+    <h2>{esc(t['kw'])}計算の使い方</h2>
     {t['howto_html']}
-    <h2>計算のしかた</h2>
+    <h2>{esc(t['kw'])}の計算式</h2>
     {t['formula_html']}
-    <h2>計算例</h2>
+    <h2>{esc(t['kw'])}の計算例</h2>
     {t['example_html']}{table_html(t, today)}
-    <h2>よくある質問</h2>
+    <h2>{esc(t['kw'])}のよくある質問</h2>
     <div class="faq">{faq_html}</div>
     <h2>出典・前提</h2>
     {src_html}
@@ -340,12 +339,13 @@ def index_page(tools):
     make_og(os.path.join(APP, 'og', 'site.png'), SITE['name'], '会社員の数字まわり・暮らしの計算ツール')
     body = f'''<main class="wrap" id="main">
   <section class="hero"><h1>{esc(SITE['name'])}</h1><p>{esc(SITE['tagline'])}</p>
+    <p>{esc(SITE['intro'])}</p>
     <p class="privacy-note">🔒 どのツールも、入力した数字はこの端末の中だけで計算し、サーバーには送りません。</p></section>
   {sections}
 </main>
 '''
     # 公開ツールが0本のトップは中身がないので、検索に出さない
-    return (head(f"{SITE['name']}|無料の計算ツール集", SITE['tagline'], BASE, '', f'{BASE}og/site.png', noindex=not live, extra=schema + '\n')
+    return (head(f"{SITE['name']}|無料の計算ツール集", SITE['tagline'] + SITE['intro'], BASE, '', f'{BASE}og/site.png', noindex=not live, extra=schema + '\n')
             + body + foot(''))
 
 
