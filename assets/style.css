@@ -176,6 +176,8 @@ input[type="date"] { min-height: 48px; line-height: 1.3; }
 .result-error { background: var(--error-soft); color: var(--error); border-radius: 10px; padding: 10px 12px; margin: 0; }
 .result-actions { margin-top: 14px; display: grid; gap: 8px; }
 .share-sub, .maker { font-size: 13px; color: var(--ink-sub); margin: 0; text-align: center; }
+.shop { margin: 4px 0 0; text-align: center; font-size: 15px; }
+.pr-badge { display: inline-block; margin-right: 6px; padding: 0 6px; border: 1px solid var(--ink-sub); border-radius: 4px; font-size: 11px; color: var(--ink-sub); vertical-align: 1px; }
 
 /* スマホの結果バー(結果カードが画面より下にある間だけ表示) */
 .result-bar {

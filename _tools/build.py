@@ -142,7 +142,7 @@ def head(title, description, canonical, prefix, og_image, noindex=False, extra='
 <script src="{a('theme-init.js')}"></script>
 <link rel="stylesheet" href="{a('style.css')}">
 {extra}</head>
-<body data-ga="{SITE['ga_id']}" data-x="{SITE['x_handle']}">
+<body data-ga="{SITE['ga_id']}" data-x="{SITE['x_handle']}" data-rakuten="{SITE['rakuten_affiliate_id']}">
 <a class="skip-link" href="#main">本文へスキップ</a>
 <header class="site-header"><div class="wrap">
   <a class="site-logo" href="{prefix or './'}">uuhai<span>計算帳</span></a>
@@ -151,11 +151,11 @@ def head(title, description, canonical, prefix, og_image, noindex=False, extra='
 '''
 
 
-def foot(prefix, scripts=()):
+def foot(prefix, scripts=(), note=''):
     a = lambda name: f'{prefix}assets/{name}?v={asset_hash(os.path.join(APP, "assets", name))}'
     tags = ''.join(f'<script src="{s}"></script>\n' for s in scripts)
     return f'''<footer class="site-footer"><div class="wrap">
-  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  {note}  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
   <p><a href="{prefix}about/">運営者・プライバシーポリシー</a> / 運営: <a href="{X_URL}" rel="noopener" data-track="follow_click">@{SITE['x_handle']}</a></p>
   <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
 </div></footer>
@@ -263,6 +263,17 @@ def tool_page(t, tools, today):
     ]
     make_og(os.path.join(APP, 'og', f'{t["slug"]}.png'), t['h1'], SITE['name'])
     calc_v = asset_hash(os.path.join(t['_dir'], 'calc.js'))
+    # 結果に合わせた商品・関連ページへのリンク。keywordなら楽天市場の検索(紹介リンク、PR表示)、urlなら普通のリンク
+    shop = t.get('shop')
+    shop_attrs = ''
+    shop_html = ''
+    if shop:
+        shop_attrs = f' data-shop-text="{esc(shop["text"])}"' + (
+            f' data-shop-keyword="{esc(shop["keyword"])}"' if shop.get('keyword') else f' data-shop-url="{esc(shop["url"])}"')
+        pr = '<span class="pr-badge">PR</span>' if shop.get('keyword') else ''
+        shop_html = f'\n        <p class="shop" id="shop" hidden>{pr}<a id="shop-link" href="#"></a></p>'
+    pr_note = ('<p>このページには紹介(アフィリエイト)リンクがあり、「PR」と表示しています。リンク先で購入されると運営者に紹介料が入ることがあります。計算結果には影響しません。</p>'
+               if shop and shop.get('keyword') else '')
     body = f'''<main class="wrap" id="main">
   <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">{esc(SITE['name'])}</a> › <span aria-current="page">{esc(t['h1'])}</span></nav>
   <h1>{esc(t['h1'])}</h1>
@@ -272,7 +283,7 @@ def tool_page(t, tools, today):
   <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
 
   <div class="calc">
-    <form class="card calc-input" id="calc-form" method="dialog" data-share="{esc(t['share'])}" novalidate>
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="{esc(t['share'])}"{shop_attrs} novalidate>
       {''.join(field_html(f) for f in t['inputs'])}
       <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
     </form>
@@ -292,6 +303,7 @@ def tool_page(t, tools, today):
         <button class="btn btn-x" type="button" id="share-btn">{X_ICON}この結果をXにポスト</button>
         <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
         <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+{shop_html}
         <p class="maker">作った人: <a href="{X_URL}" rel="noopener" data-track="follow_click">@{SITE['x_handle']}</a>(個人開発)</p>
       </div>
       <p class="sr-only" id="result-live" aria-live="polite"></p>
@@ -318,7 +330,7 @@ def tool_page(t, tools, today):
 ''' if related_html else '') + '</main>\n'
     return (head(t['title'], t['description'], url, '../', f'{BASE}og/{t["slug"]}.png',
                  noindex=t.get('draft', False), extra='\n'.join(schema) + '\n')
-            + body + foot('../', [f'calc.js?v={calc_v}']))
+            + body + foot('../', [f'calc.js?v={calc_v}'], pr_note))
 
 
 def index_page(tools):
@@ -359,6 +371,8 @@ def about_page():
   <h2>入力した内容の扱い</h2>
   <p>計算はすべてお使いのブラウザの中で行い、入力した数字をサーバーへ送ることはありません。ページのURLにも入力内容は含めません。</p>
   <p>「この結果をXにポスト」を押したときだけ、結果の一文とページのURLがXの投稿画面に渡ります。投稿するかどうかと文面は、Xの画面で確認・編集できます。「結果をコピー」は、お使いの端末のクリップボードにコピーするだけです。</p>
+  <h2>紹介(アフィリエイト)リンク</h2>
+  <p>一部のページには、楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で商品を購入されると、運営者に紹介料が入ることがあります。紹介料の有無は計算結果に影響しません。リンクを押したあとの楽天市場では、楽天のCookieが使われます。詳しくは<a href="https://privacy.rakuten.co.jp/" rel="noopener">楽天グループのプライバシーポリシー</a>をご覧ください。</p>
   <h2>端末に保存する情報</h2>
   <p>表示の設定(ライト/ダークモード)と、運営者が自分のアクセスを集計から外すための設定を、お使いのブラウザの中(localStorage)に保存することがあります。入力した数字は保存しません。</p>
   <h2>アクセス解析</h2>

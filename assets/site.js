@@ -138,8 +138,34 @@
     shownError = '';
     const liveText = `${r.label} ${out.value.textContent}${r.unit || ''}`;
     if (out.live.textContent !== liveText) out.live.textContent = liveText;
+    renderShop(r);
     if (userEdited && !reported) { reported = true; gtag('event', 'calc_result', { page_path: location.pathname }); }
     bar.render();
+  }
+
+  // 結果に合わせた商品・関連ページへのリンク(spec.jsonのshop)。{名前}は計算結果のvarsで置き換える
+  const shopEl = $('shop');
+  const RAKUTEN_ID = body.dataset.rakuten || '';
+  const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => {
+    const x = (vars || {})[k];
+    return typeof x === 'number' ? x.toLocaleString('ja-JP') : (x ?? '');
+  });
+  function renderShop(r) {
+    if (!shopEl) return;
+    const link = $('shop-link');
+    link.textContent = fill(form.dataset.shopText, r.vars);
+    if (form.dataset.shopKeyword) {
+      // 楽天市場の検索結果(レビュー件数順)への紹介リンク。相場ノートと同じ形式
+      const search = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(fill(form.dataset.shopKeyword, r.vars))}/?s=5`;
+      link.href = RAKUTEN_ID ? `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_ID}/?pc=${encodeURIComponent(search)}&link_type=text` : search;
+      link.rel = 'sponsored noopener';
+      link.target = '_blank';
+      link.dataset.track = 'affiliate_click';
+    } else {
+      link.href = form.dataset.shopUrl;
+      link.dataset.track = 'shop_click';
+    }
+    shopEl.hidden = false;
   }
 
   form.addEventListener('input', () => { userEdited = true; update(false); });
