@@ -284,6 +284,14 @@ def tool_page(t, tools, today):
     pr_note = ('<p>このページには楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で購入されると運営者に紹介料が入ることがあります。計算結果には影響しません。</p>\n  '
                if rk else '')
     pr_top = '\n  <p class="pr-top">このページには広告(PR)を含みます。</p>' if rk else ''
+    # 買う前に確認すること(spec.jsonのchecks)。結果の次に読む位置に置く
+    ck = t.get('checks')
+    checks_html = ''
+    if ck:
+        items = ''.join(f'<li><h3>{esc(i["h"])}</h3>{i["html"]}</li>' for i in ck['items'])
+        checks_html = f'''
+    <h2>{esc(ck['title'])}</h2>
+    <ol class="checks">{items}</ol>'''
     privacy = ('シェアボタンか、楽天市場へのリンク(PR)を押したときだけ、結果の数字が相手先に渡ります。' if rk
                else 'シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。')
     body = f'''<main class="wrap" id="main">
@@ -321,7 +329,7 @@ def tool_page(t, tools, today):
     </section>
   </div>
 
-  <section class="content">
+  <section class="content">{checks_html}
     <h2>{esc(t['kw'])}計算の使い方</h2>
     {t['howto_html']}
     <h2>{esc(t['kw'])}の計算式</h2>
