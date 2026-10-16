@@ -21,7 +21,7 @@ globalThis.CALC = {
     }
     if (!(v.per > 0)) return { error: 'ダウンライト1台の明るさ(lm)を入れてください。' };
 
-    const [name, , std, range] = RANKS[i];
+    const [name, rank, std, range] = RANKS[i];
     const count = Math.ceil(std / v.per - 1e-9);
     return {
       value: std, unit: 'lm', label: 'シーリングライトの明るさの目安(標準定格光束)',
@@ -31,7 +31,8 @@ globalThis.CALC = {
         ['ダウンライトの台数の目安', `${count}台`],
       ],
       note: note || 'ダウンライトの台数は明るさの合計だけで出した目安です。配置や天井の高さで明るさの感じ方は変わります。',
-      vars: { tatami: size, lm: std.toLocaleString('ja-JP') },
+      // rank: 楽天の紹介リンクの段階(1ランク明るくしたときは上のランクの畳数)
+      vars: { tatami: size, rank, lm: std.toLocaleString('ja-JP') },
     };
   },
 };

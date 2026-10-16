@@ -50,6 +50,8 @@
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[data-track]');
     if (a) gtag('event', a.dataset.track, { page_path: location.pathname });
+    // 楽天の紹介リンクは規約上タグに属性を足せないので、外側の.shop-itemで判定する
+    else if (e.target.closest('.shop-item a')) gtag('event', 'affiliate_click', { page_path: location.pathname });
   });
 
   // ---- 計算フォーム ----
@@ -143,29 +145,17 @@
     bar.render();
   }
 
-  // 結果に合わせた商品・関連ページへのリンク(spec.jsonのshop)。{名前}は計算結果のvarsで置き換える
+  // 楽天の紹介リンク(spec.jsonのshop.rakuten)。段階ごとに埋め込んだリンクのうち、計算結果(vars[data-by])に合う1本だけ表示する
   const shopEl = $('shop');
-  const RAKUTEN_ID = body.dataset.rakuten || '';
-  const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => {
-    const x = (vars || {})[k];
-    return typeof x === 'number' ? x.toLocaleString('ja-JP') : (x ?? '');
-  });
   function renderShop(r) {
     if (!shopEl) return;
-    const link = $('shop-link');
-    link.textContent = fill(form.dataset.shopText, r.vars);
-    if (form.dataset.shopKeyword) {
-      // 楽天市場の検索結果(レビュー件数順)への紹介リンク。相場ノートと同じ形式
-      const search = `https://search.rakuten.co.jp/search/mall/${encodeURIComponent(fill(form.dataset.shopKeyword, r.vars))}/?s=5`;
-      link.href = RAKUTEN_ID ? `https://hb.afl.rakuten.co.jp/hgc/${RAKUTEN_ID}/?pc=${encodeURIComponent(search)}&link_type=text` : search;
-      link.rel = 'sponsored noopener';
-      link.target = '_blank';
-      link.dataset.track = 'affiliate_click';
-    } else {
-      link.href = form.dataset.shopUrl;
-      link.dataset.track = 'shop_click';
-    }
-    shopEl.hidden = false;
+    const key = String((r.vars || {})[shopEl.dataset.by]);
+    let found = false;
+    shopEl.querySelectorAll('.shop-item').forEach((el) => {
+      el.hidden = el.dataset.key !== key;
+      if (!el.hidden) found = true;
+    });
+    shopEl.hidden = !found;
   }
 
   form.addEventListener('input', () => { userEdited = true; update(false); });

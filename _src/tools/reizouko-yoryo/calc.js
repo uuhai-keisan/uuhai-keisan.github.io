@@ -18,7 +18,8 @@ globalThis.CALC = {
         [`シャープの式での${n}人の幅`, `${70 * n + 170}〜${70 * n + 220}L`],
       ],
       note: '容量は「定格内容積」の目安です。設置場所の幅・奥行き・搬入経路も確認してください。',
-      vars: { need, people: n },
+      // band: 楽天の紹介リンクの段階(100L単位に切り上げ、300〜600L)
+      vars: { need, people: n, band: Math.min(600, Math.max(300, Math.ceil(need / 100) * 100)) },
     };
   },
 };
