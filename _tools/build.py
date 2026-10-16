@@ -269,10 +269,12 @@ def tool_page(t, tools, today):
     rk = shop.get('rakuten')
     shop_html = ''
     if rk:
-        missing = [k for k, h in rk['links'].items() if not h.strip()]
+        missing = [k for k, hs in rk['links'].items() if not isinstance(hs, list) or not hs or not all(h.strip() for h in hs)]
         if missing:
             sys.exit(f"{t['slug']}: 楽天のリンクが未作成の段階があります: {', '.join(missing)}")
-        items = ''.join(f'<span class="shop-item" data-key="{esc(k)}" hidden>{h}</span>' for k, h in rk['links'].items())
+        # 1段階に1〜2本(洗濯機は8kg以上で「洗濯乾燥機」も)。各リンクは公式ツールの出力をそのまま入れる
+        items = ''.join(f'<span class="shop-item" data-key="{esc(k)}" hidden>' + ''.join(f'<span>{h}</span>' for h in hs) + '</span>'
+                        for k, hs in rk['links'].items())
         shop_html = f'''
         <div class="shop" id="shop" data-by="{esc(rk['by'])}" hidden>
           <p class="shop-link"><span class="pr-badge">PR</span>{items}</p>
