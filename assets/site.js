@@ -47,12 +47,15 @@
   })();
 
   // ---- 外部リンクのクリック計測(Xのプロフィール等) ----
-  document.addEventListener('click', (e) => {
+  const trackClick = (e) => {
     const a = e.target.closest('a[data-track]');
     if (a) gtag('event', a.dataset.track, { page_path: location.pathname });
     // 楽天の紹介リンクは規約上タグに属性を足せないので、外側の.shop-itemで判定する
     else if (e.target.closest('.shop-item a')) gtag('event', 'affiliate_click', { page_path: location.pathname });
-  });
+  };
+  document.addEventListener('click', trackClick);
+  // 中クリックで新しいタブに開いたときも数える
+  document.addEventListener('auxclick', (e) => { if (e.button === 1) trackClick(e); });
 
   // ---- 計算フォーム ----
   const form = document.getElementById('calc-form');

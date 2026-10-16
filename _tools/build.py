@@ -121,7 +121,7 @@ def head(title, description, canonical, prefix, og_image, noindex=False, extra='
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self'; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 {robots}<title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{canonical}">
@@ -283,13 +283,14 @@ def tool_page(t, tools, today):
         <p class="shop shop-plain"><a href="{esc(shop['url'])}" data-track="shop_click">{esc(shop['text'])}</a></p>'''
     pr_note = ('<p>このページには楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で購入されると運営者に紹介料が入ることがあります。計算結果には影響しません。</p>\n  '
                if rk else '')
+    pr_top = '\n  <p class="pr-top">このページには広告(PR)を含みます。</p>' if rk else ''
     privacy = ('シェアボタンか、楽天市場へのリンク(PR)を押したときだけ、結果の数字が相手先に渡ります。' if rk
                else 'シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。')
     body = f'''<main class="wrap" id="main">
   <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">{esc(SITE['name'])}</a> › <span aria-current="page">{esc(t['h1'])}</span></nav>
   <h1>{esc(t['h1'])}</h1>
   <p class="lead">{esc(t['description'])}</p>
-  <p class="updated">最終更新: <time datetime="{t['updated']}">{jp_date(t['updated'])}</time></p>
+  <p class="updated">最終更新: <time datetime="{t['updated']}">{jp_date(t['updated'])}</time></p>{pr_top}
   <p class="tldr">{esc(t['tldr'])}</p>
   <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。{privacy}</p>
 
@@ -380,13 +381,13 @@ def about_page():
   <p>各ツールの計算結果は入力値にもとづく目安で、正確さを保証するものではありません。計算のしかたと前提は各ページに書いています。誤りに気づいた場合はお知らせください。</p>
   <h2>入力した内容の扱い</h2>
   <p>計算はすべてお使いのブラウザの中で行い、入力した数字をサーバーへ送ることはありません。ページのURLにも入力内容は含めません。</p>
-  <p>「この結果をXにポスト」を押したときだけ、結果の一文とページのURLがXの投稿画面に渡ります。投稿するかどうかと文面は、Xの画面で確認・編集できます。「結果をコピー」は、お使いの端末のクリップボードにコピーするだけです。</p>
+  <p>「この結果をXにポスト」を押したときだけ、結果の一文とページのURLがXの投稿画面に渡ります(楽天市場へのリンクを押したときの扱いは次の「紹介(アフィリエイト)リンク」をご覧ください)。投稿するかどうかと文面は、Xの画面で確認・編集できます。「結果をコピー」は、お使いの端末のクリップボードにコピーするだけです。</p>
   <h2>紹介(アフィリエイト)リンク</h2>
   <p>一部のページには、楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で商品を購入されると、運営者に紹介料が入ることがあります。紹介料の有無は計算結果に影響しません。リンクには、計算結果の数字(例: 洗濯機の「8kg」)を楽天市場の検索語として含めます。リンクを押したあとの楽天市場では、楽天のCookieが使われます。詳しくは<a href="https://privacy.rakuten.co.jp/" rel="noopener">楽天グループのプライバシーポリシー</a>をご覧ください。</p>
   <h2>端末に保存する情報</h2>
   <p>表示の設定(ライト/ダークモード)と、運営者が自分のアクセスを集計から外すための設定を、お使いのブラウザの中(localStorage)に保存することがあります。入力した数字は保存しません。</p>
   <h2>アクセス解析</h2>
-  <p>サイト改善のため、Googleアナリティクスを使っています。Cookieを使って閲覧ページなどの情報を匿名で集めますが、個人を特定する情報は含みません。ブラウザの設定でCookieを無効にできます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" rel="noopener">Googleのポリシー</a>をご覧ください。</p>
+  <p>サイト改善のため、Googleアナリティクスを使っています。Cookieを使って閲覧ページなどの情報を匿名で集めますが、個人を特定する情報は含みません。ブラウザの設定でCookieを無効にできます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" rel="noopener">Googleのポリシー</a>をご覧ください。紹介リンクが押された回数も記録しますが、計算結果の数字は送りません。</p>
 </main>
 '''
     return head(f"運営者・プライバシーポリシー|{SITE['name']}", f"{SITE['name']}の運営者情報とプライバシーポリシー。",
