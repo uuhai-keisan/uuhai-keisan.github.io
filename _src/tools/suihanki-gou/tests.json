@@ -1,0 +1,140 @@
+[
+  {
+    "name": "計算例 4人 1杯 1日分(2食)",
+    "input": {
+      "people": 4,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "value": 5.5,
+      "details": {
+        "1回に炊く量": "4合"
+      }
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "2人 1杯 1日分 → 3合",
+    "input": {
+      "people": 2,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "value": 3
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "5人 1杯 1日分 → 5.5合(ちょうど5合)",
+    "input": {
+      "people": 5,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "value": 5.5
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "3人 1杯 1日分 → ちょうど3合は5.5合炊き",
+    "input": {
+      "people": 3,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "value": 5.5
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "6人 1杯 1日分 → 1升",
+    "input": {
+      "people": 6,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "value": "1升"
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "5人 1杯 1食分 → 3合(境目の注記)",
+    "input": {
+      "people": 5,
+      "bowls": "1",
+      "meals": "1"
+    },
+    "expect": {
+      "value": 3
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "4人 1杯 2日分 → 1升でも不足",
+    "input": {
+      "people": 4,
+      "bowls": "1",
+      "meals": "6"
+    },
+    "expect": {
+      "value": "1升でも足りない",
+      "details": {
+        "1升炊きなら": "2回に分けて炊く"
+      }
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "人数0",
+    "input": {
+      "people": 0,
+      "bowls": "1",
+      "meals": "2"
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "1人 1杯 6食 → 3合ちょうどは5.5合炊き",
+    "input": {
+      "people": 1,
+      "bowls": "1",
+      "meals": "6"
+    },
+    "expect": {
+      "value": 5.5
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "10合ちょうど → 1升",
+    "input": {
+      "people": 5,
+      "bowls": "2",
+      "meals": "2"
+    },
+    "expect": {
+      "value": "1升"
+    },
+    "today": "2026-10-17"
+  },
+  {
+    "name": "食数が空 → エラー",
+    "input": {
+      "people": 3,
+      "bowls": "1",
+      "meals": ""
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-10-17"
+  }
+]

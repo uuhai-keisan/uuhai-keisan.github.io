@@ -227,6 +227,9 @@ def tool_page(t, tools, today):
     url = f'{BASE}{t["slug"]}/'
     # 関連リンク: 同じカテゴリは全部、残りの枠はページごとに開始位置をずらして選ぶ(被リンクの偏りを防ぐ)
     live = [o for o in tools if not o.get('draft')]
+    # late(検証の途中で足したツール)は、元の12本の関連リンクに入れない(11/20判定まで既存ページを変えないため)
+    if not t.get('late'):
+        live = [o for o in live if not o.get('late')]
     same = [o for o in live if o is not t and o['category'] == t['category']]
     others = [o for o in live if o['category'] != t['category']]
     if others:
