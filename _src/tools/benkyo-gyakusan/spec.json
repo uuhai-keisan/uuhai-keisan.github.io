@@ -125,6 +125,7 @@
     }
   ],
   "sources": [],
+  "shop": {"rakuten": {"by": "", "keywords": {"all": ["学習タイマー"]}, "links": {"all": ["<a href=\"https://hb.afl.rakuten.co.jp/hgc/567f9cc6.631b3687.567f9cc7.3d3a8a85/_RTLink150744?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E5%AD%A6%E7%BF%92%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC%2F%3Fs%3D5&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">楽天市場で「学習タイマー」を探す</a>"]}, "card": {"ng": "中古", "min": 1000}, "lead": "勉強時間を計るタイマーの例です。"}},
   "share": "試験まで{days}日、1日{pace}ページ進めれば間に合う計算",
   "table": {
     "title": "教材のページ数と試験までの日数ごとの1日のノルマ",

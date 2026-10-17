@@ -153,7 +153,9 @@
   const shopEl = $('shop');
   function renderShop(r) {
     if (!shopEl) return;
-    const key = String((r.vars || {})[shopEl.dataset.by]);
+    // data-by が空のページは、結果にかかわらず1本目の段階を出す
+    const first = shopEl.querySelector('.shop-item');
+    const key = shopEl.dataset.by ? String((r.vars || {})[shopEl.dataset.by]) : first && first.dataset.key;
     let found = false;
     let item = null;
     shopEl.querySelectorAll('.shop-item').forEach((el) => {
@@ -184,10 +186,11 @@
     if (cardsCache.has(kw)) return cardsCache.get(kw);
     const u = new URL(`https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/${RAKUTEN.ver}`);
     const q = {
-      applicationId: RAKUTEN.app, accessKey: RAKUTEN.key, affiliateId: RAKUTEN.aff, keyword: kw, genreId: shopEl.dataset.genre,
+      applicationId: RAKUTEN.app, accessKey: RAKUTEN.key, affiliateId: RAKUTEN.aff, keyword: kw,
       sort: '-reviewCount', hits: '30', imageFlag: '1', availability: '1', format: 'json', formatVersion: '2',
       elements: 'itemName,itemPrice,affiliateUrl,mediumImageUrls',
     };
+    if (shopEl.dataset.genre) q.genreId = shopEl.dataset.genre;
     if (shopEl.dataset.ng) q.NGKeyword = shopEl.dataset.ng;
     if (Number(shopEl.dataset.min) > 0) q.minPrice = shopEl.dataset.min;
     Object.entries(q).forEach(([k, v]) => u.searchParams.set(k, v));
@@ -198,6 +201,7 @@
   }
   // 商品名に「数字+単位」(例: 8kg、401L、14畳、5.5合)があり、その数字が段階の範囲に入るか、別名(例: 1升)を含むか
   function sizeFits(name, want) {
+    if (!shopEl.dataset.unit) return true;
     if (want.alias.some((a) => a && name.includes(a))) return true;
     const key = Number(want.key);
     const span = Number(shopEl.dataset.span || 0);
