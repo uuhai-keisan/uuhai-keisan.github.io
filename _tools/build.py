@@ -121,7 +121,7 @@ def head(title, description, canonical, prefix, og_image, noindex=False, extra='
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 {robots}<title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{canonical}">
@@ -276,17 +276,25 @@ def tool_page(t, tools, today):
         if missing:
             sys.exit(f"{t['slug']}: 楽天のリンクが未作成の段階があります: {', '.join(missing)}")
         # 1段階に1〜2本(洗濯機は8kg以上で「洗濯乾燥機」も)。各リンクは公式ツールの出力をそのまま入れる
-        items = ''.join(f'<span class="shop-item" data-key="{esc(k)}" hidden>' + ''.join(f'<span>{h}</span>' for h in hs) + '</span>'
+        # data-kw(1本目の検索語)とdata-genreは、site.jsが楽天の商品検索APIで商品カードを出すのに使う(リンク本体は変えない)
+        cd = rk.get('card') or {}
+        items = ''.join(f'<span class="shop-item" data-key="{esc(k)}" data-kw="{esc(rk["keywords"][k][0])}" data-alias="{esc(cd.get("alias", {}).get(k, ""))}" hidden>' + ''.join(f'<span>{h}</span>' for h in hs) + '</span>'
                         for k, hs in rk['links'].items())
         shop_html = f'''
-        <div class="shop" id="shop" data-by="{esc(rk['by'])}" hidden>
+        <div class="shop" id="shop" data-by="{esc(rk['by'])}" data-genre="{esc(rk['genres']['base'])}" data-unit="{esc(cd.get('unit', ''))}" data-span="{cd.get('span', 0)}" data-ng="{esc(cd.get('ng', ''))}" data-min="{cd.get('min', 0)}" hidden>
           <p class="shop-link"><span class="pr-badge">PR</span>{items}</p>
           <p class="shop-note">楽天市場の検索結果が新しいタブで開きます。検索語には結果の数字が入ります。</p>
+          <div class="shop-cards" id="shop-cards" hidden>
+            <p class="shop-cards-title"><span class="pr-badge">PR</span>楽天市場でレビュー件数の多い商品</p>
+            <ul class="shop-cards-list"></ul>
+            <p class="shop-note">楽天市場の商品検索から、商品名の容量が結果に合うものを自動で表示しています。運営者が選んだおすすめではありません。価格は表示した時点の楽天市場の表示価格で、送料は別の場合があります。</p>
+          </div>
         </div>'''
     elif shop:
         shop_html = f'''
         <p class="shop shop-plain"><a href="{esc(shop['url'])}" data-track="shop_click">{esc(shop['text'])}</a></p>'''
-    pr_note = ('<p>このページには楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で購入されると運営者に紹介料が入ることがあります。計算結果には影響しません。</p>\n  '
+    pr_note = ('<p>このページには楽天アフィリエイトの紹介リンクと商品の紹介があり、「PR」と表示しています。リンク先で購入されると運営者に紹介料が入ることがあります。計算結果には影響しません。</p>\n  '
+               '<p><!-- Rakuten Web Services Attribution Snippet FROM HERE --> <a href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a> <!-- Rakuten Web Services Attribution Snippet TO HERE --></p>\n  '
                if rk else '')
     pr_top = '\n  <p class="pr-top">このページには広告(PR)を含みます。</p>' if rk else ''
     # 買う前に確認すること(spec.jsonのchecks)。結果の次に読む位置に置く
@@ -297,7 +305,8 @@ def tool_page(t, tools, today):
         checks_html = f'''
     <h2>{esc(ck['title'])}</h2>
     <ol class="checks">{items}</ol>'''
-    privacy = ('シェアボタンか、楽天市場へのリンク(PR)を押したときだけ、結果の数字が相手先に渡ります。' if rk
+    rk_kws = [v[0] for v in rk['keywords'].values()] if rk else []
+    privacy = (f'結果を表示すると、楽天市場の商品を出すために、結果に応じた検索語(例: 「{esc(rk_kws[len(rk_kws) // 2])}」。入力した値と同じ数字になることがあります)を楽天に送ります。ほかに結果の数字が外部に渡るのは、シェアボタンか楽天市場へのリンク(PR)を押したときだけです。' if rk
                else 'シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。')
     body = f'''<main class="wrap" id="main">
   <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">{esc(SITE['name'])}</a> › <span aria-current="page">{esc(t['h1'])}</span></nav>
@@ -396,7 +405,7 @@ def about_page():
   <p>計算はすべてお使いのブラウザの中で行い、入力した数字をサーバーへ送ることはありません。ページのURLにも入力内容は含めません。</p>
   <p>「この結果をXにポスト」を押したときだけ、結果の一文とページのURLがXの投稿画面に渡ります(楽天市場へのリンクを押したときの扱いは次の「紹介(アフィリエイト)リンク」をご覧ください)。投稿するかどうかと文面は、Xの画面で確認・編集できます。「結果をコピー」は、お使いの端末のクリップボードにコピーするだけです。</p>
   <h2>紹介(アフィリエイト)リンク</h2>
-  <p>一部のページには、楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で商品を購入されると、運営者に紹介料が入ることがあります。紹介料の有無は計算結果に影響しません。リンクには、計算結果の数字(例: 洗濯機の「8kg」)を楽天市場の検索語として含めます。リンクを押したあとの楽天市場では、楽天のCookieが使われます。詳しくは<a href="https://privacy.rakuten.co.jp/" rel="noopener">楽天グループのプライバシーポリシー</a>をご覧ください。</p>
+  <p>一部のページには、楽天アフィリエイトの紹介リンクがあり、「PR」と表示しています。リンク先で商品を購入されると、運営者に紹介料が入ることがあります。紹介料の有無は計算結果に影響しません。リンクには、計算結果の数字(例: 洗濯機の「8kg」)を楽天市場の検索語として含めます。リンクを押したあとの楽天市場では、楽天のCookieが使われます。また、紹介リンクのあるページでは、楽天市場の商品(写真・商品名・価格)を表示するために、結果を表示すると自動で(リンクを押さなくても)、結果に応じた検索語(例: 「洗濯機 8kg」。入力した値と同じ数字になることがあります)を楽天の商品検索API(楽天ウェブサービス)に送ります。このとき、通常のWebの通信と同じく、IPアドレスやブラウザの種類、閲覧中のページのURLが楽天に届きます。詳しくは<a href="https://privacy.rakuten.co.jp/" rel="noopener">楽天グループのプライバシーポリシー</a>をご覧ください。</p>
   <h2>端末に保存する情報</h2>
   <p>表示の設定(ライト/ダークモード)と、運営者が自分のアクセスを集計から外すための設定を、お使いのブラウザの中(localStorage)に保存することがあります。入力した数字は保存しません。</p>
   <h2>アクセス解析</h2>

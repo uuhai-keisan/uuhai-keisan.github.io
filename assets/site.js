@@ -51,7 +51,8 @@
     const a = e.target.closest('a[data-track]');
     if (a) gtag('event', a.dataset.track, { page_path: location.pathname });
     // 楽天の紹介リンクは規約上タグに属性を足せないので、外側の.shop-itemで判定する
-    else if (e.target.closest('.shop-item a')) gtag('event', 'affiliate_click', { page_path: location.pathname });
+    else if (e.target.closest('.shop-item a')) gtag('event', 'affiliate_click', { page_path: location.pathname, link_type: 'text' });
+    else if (e.target.closest('.shop-cards a')) gtag('event', 'affiliate_click', { page_path: location.pathname, link_type: 'card' });
   };
   document.addEventListener('click', trackClick);
   // 中クリックで新しいタブに開いたときも数える
@@ -154,11 +155,133 @@
     if (!shopEl) return;
     const key = String((r.vars || {})[shopEl.dataset.by]);
     let found = false;
+    let item = null;
     shopEl.querySelectorAll('.shop-item').forEach((el) => {
       el.hidden = el.dataset.key !== key;
-      if (!el.hidden) found = true;
+      if (!el.hidden) { found = true; item = el; }
     });
     shopEl.hidden = !found;
+    renderCards(item);
+  }
+
+  // 楽天の商品カード: 表示中の段階の検索語(data-kw)で楽天の商品検索APIを呼び、レビュー件数の多い順に取った商品のうち、
+  // 商品名の容量が結果の段階に合うもの(data-unit・data-span・data-alias)だけを3件まで出す。合う商品がなければ出さない。
+  // リンクはAPIが返したaffiliateUrlをそのまま使う。APIの上限(1秒1回、相場ノートと共用)を使いすぎないよう、
+  // 紹介リンクの欄が画面に近づいてから取りに行く。取得に失敗したらカードは出さない(紹介リンクは残る)
+  const RAKUTEN = {
+    app: 'f9f8dd97-c7a4-4ae1-a2c1-38b4572a702e',
+    key: 'pk_gJd3Q0JkttKeBF4DcfYjD8zYljezjxNxEFiUssXZhFs',
+    aff: '567fd2ff.507b4e2c.567fd300.5261c56d',
+    ver: '20260701',
+  };
+  const cardsEl = $('shop-cards');
+  const cardsCache = new Map();
+  let cardsWant = null; // 表示したい段階 { key, kw, alias }
+  let cardsShown = '';
+  let cardsTimer = 0;
+  let shopNear = false;
+  function fetchCards(kw) {
+    if (cardsCache.has(kw)) return cardsCache.get(kw);
+    const u = new URL(`https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/${RAKUTEN.ver}`);
+    const q = {
+      applicationId: RAKUTEN.app, accessKey: RAKUTEN.key, affiliateId: RAKUTEN.aff, keyword: kw, genreId: shopEl.dataset.genre,
+      sort: '-reviewCount', hits: '30', imageFlag: '1', availability: '1', format: 'json', formatVersion: '2',
+      elements: 'itemName,itemPrice,affiliateUrl,mediumImageUrls',
+    };
+    if (shopEl.dataset.ng) q.NGKeyword = shopEl.dataset.ng;
+    if (Number(shopEl.dataset.min) > 0) q.minPrice = shopEl.dataset.min;
+    Object.entries(q).forEach(([k, v]) => u.searchParams.set(k, v));
+    const p = fetch(u).then((res) => (res.ok ? res.json() : Promise.reject(res.status))).then((d) => d.Items || []);
+    cardsCache.set(kw, p);
+    p.catch(() => cardsCache.delete(kw));
+    return p;
+  }
+  // 商品名に「数字+単位」(例: 8kg、401L、14畳、5.5合)があり、その数字が段階の範囲に入るか、別名(例: 1升)を含むか
+  function sizeFits(name, want) {
+    if (want.alias.some((a) => a && name.includes(a))) return true;
+    const key = Number(want.key);
+    const span = Number(shopEl.dataset.span || 0);
+    const re = new RegExp(`(?:^|[^0-9.])(\\d+(?:\\.\\d+)?)\\s*(?:${shopEl.dataset.unit})(?![A-Za-z])`, 'g');
+    for (const m of name.matchAll(re)) {
+      const n = Number(m[1]);
+      if (n >= key - 1e-9 && n <= key + span + 1e-9) return true;
+    }
+    return false;
+  }
+  function card(it) {
+    const url = String(it.affiliateUrl || '');
+    let img = (it.mediumImageUrls || [])[0];
+    img = String((img && img.imageUrl) || img || '');
+    if (!url.startsWith('https://hb.afl.rakuten.co.jp/') || !img.startsWith('https://thumbnail.image.rakuten.co.jp/')) return null;
+    img = /_ex=\d+x\d+/.test(img) ? img.replace(/_ex=\d+x\d+/, '_ex=240x240') : `${img}${img.includes('?') ? '&' : '?'}_ex=240x240`;
+    const fullName = String(it.itemName || '');
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'nofollow sponsored noopener';
+    const im = document.createElement('img');
+    im.src = img;
+    im.alt = '';
+    im.width = 120;
+    im.height = 120;
+    im.loading = 'lazy';
+    im.decoding = 'async';
+    const name = document.createElement('span');
+    name.className = 'shop-card-name';
+    name.textContent = fullName;
+    const price = document.createElement('span');
+    price.className = 'shop-card-price';
+    const yen = Number(it.itemPrice);
+    price.textContent = yen > 0 ? `${yen.toLocaleString('ja-JP')}円` : '';
+    // 読み上げは長い商品名を短くし、新しいタブで開くことを伝える
+    a.setAttribute('aria-label', `${fullName.length > 40 ? `${fullName.slice(0, 40)}…` : fullName} ${price.textContent}(楽天市場、新しいタブで開きます)`);
+    a.append(im, name, price);
+    li.append(a);
+    return li;
+  }
+  function loadCards() {
+    const want = cardsWant;
+    if (!want || !shopNear || want.kw === cardsShown) return;
+    cardsShown = want.kw;
+    clearTimeout(cardsTimer);
+    // 入力中に何度も呼ばないよう、結果が落ち着いてから取りに行く
+    cardsTimer = setTimeout(() => {
+      fetchCards(want.kw).then((items) => {
+        if (cardsWant !== want) return;
+        // 同じ商品が別の出品で並ぶことがあるので、商品名の先頭が同じものは1つにする
+        const seen = new Set();
+        const picked = items.filter((it) => {
+          const name = String(it.itemName || '');
+          const head = name.replace(/[【［\[(（＼].*?[】］\])）／]/g, '').trim().slice(0, 24);
+          if (!sizeFits(name, want) || seen.has(head)) return false;
+          seen.add(head);
+          return true;
+        }).map(card).filter(Boolean).slice(0, 3);
+        cardsEl.querySelector('.shop-cards-list').replaceChildren(...picked);
+        cardsEl.hidden = !picked.length;
+      }).catch(() => {
+        if (cardsWant !== want) return;
+        cardsEl.hidden = true;
+        cardsShown = '';
+      });
+    }, 1000);
+  }
+  function renderCards(item) {
+    if (!cardsEl) return;
+    const kw = item ? item.dataset.kw || '' : '';
+    if (cardsWant && cardsWant.kw === kw) return;
+    // 段階が変わったら、前の段階の商品はすぐに隠す
+    cardsEl.hidden = true;
+    clearTimeout(cardsTimer);
+    cardsShown = '';
+    cardsWant = kw ? { key: item.dataset.key, kw, alias: (item.dataset.alias || '').split(' ') } : null;
+    loadCards();
+  }
+  if (cardsEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { shopNear = true; loadCards(); }
+    }, { rootMargin: '300px 0px' }).observe(shopEl);
   }
 
   form.addEventListener('input', () => { userEdited = true; update(false); });

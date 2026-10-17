@@ -226,6 +226,16 @@ input[type="date"] { min-height: 48px; line-height: 1.3; }
 .shop-link a { display: inline-block; padding: 8px 0; }
 .shop-note { font-size: 12px; color: var(--ink-sub); }
 .shop-plain { font-size: 15px; }
+.shop-cards { margin: 12px 0 0; text-align: left; }
+.shop-cards-title { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+.shop-cards-title .pr-badge { margin: 0; }
+.shop-cards-list { list-style: none; margin: 8px 0 4px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.shop-cards-list a { display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); text-decoration: none; }
+.shop-cards-list a:hover { border-color: var(--accent); }
+.shop-cards-list a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.shop-cards-list img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; border-radius: 6px; background: #fff; }
+.shop-card-name { font-size: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.shop-card-price { margin-top: auto; font-size: 13px; font-weight: 700; }
 .pr-badge { display: inline-block; margin-right: 6px; padding: 0 6px; border: 1px solid var(--ink); border-radius: 4px; font-size: 13px; font-weight: 700; color: var(--ink); vertical-align: 1px; }
 .checks li { margin-bottom: 10px; }
 .checks h3 { margin: 0; font-size: 1em; }
