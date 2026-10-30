@@ -97,6 +97,7 @@
   let shownError = '';      // 画面に出しているエラー文
   let userEdited = false;   // 初期値(例の値)から一度でも変えたか
   let reported = false;
+  let engaged = false;      // ページを操作したか(見られたかの計測用)
 
   function show(state) {
     out.placeholder.hidden = state !== 'empty';
@@ -141,6 +142,7 @@
     out.note.textContent = r.note || '';
     out.note.hidden = !r.note;
     show('ok');
+    checkViews();
     shownError = '';
     const liveText = `${r.label} ${out.value.textContent}${r.unit || ''}`;
     if (out.live.textContent !== liveText) out.live.textContent = liveText;
@@ -264,8 +266,11 @@
         }).map(card).filter(Boolean).slice(0, 3);
         cardsEl.querySelector('.shop-cards-list').replaceChildren(...picked);
         cardsEl.hidden = !picked.length;
-      }).catch(() => {
+        // 合う商品が0件の段階を見つけるため、出した件数を送る
+        gtag('event', 'cards_result', { page_path: location.pathname, cards_count: picked.length, cards_status: 'ok' });
+      }).catch((err) => {
         if (cardsWant !== want) return;
+        gtag('event', 'cards_result', { page_path: location.pathname, cards_count: 0, cards_status: typeof err === 'number' ? `http_${err}` : (err && err.name) || 'error' });
         cardsEl.hidden = true;
         cardsShown = '';
       });
@@ -288,10 +293,11 @@
     }, { rootMargin: '300px 0px' }).observe(shopEl);
   }
 
-  form.addEventListener('input', () => { userEdited = true; update(false); });
+  form.addEventListener('input', () => { userEdited = true; engaged = true; update(false); });
   form.addEventListener('change', () => update(true));
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    engaged = true;
     update(true);
     if (document.activeElement) document.activeElement.blur();
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -370,6 +376,37 @@
     });
     return { render: position };
   })();
+
+  // ---- 見られたかの計測: calc_resultは入力を書き換えた人しか数えないので、初期値のまま結果を見た人も分かるよう、
+  // ページを操作したあとに結果カード・紹介リンクの欄が画面に入ったら、それぞれ1回だけ送る(開いただけでは送らない)。
+  // 再読み込み・戻るの自動スクロールを操作と数えないよう、scrollではなくホイール・タッチ・クリック・キーを見る ----
+  const sent = new Set();
+  const once = (name, params) => {
+    if (sent.has(name)) return;
+    sent.add(name);
+    gtag('event', name, { page_path: location.pathname, ...params });
+  };
+  const inView = new Map();
+  const checkViews = () => {
+    if (!engaged) return;
+    if (inView.get(out.card) && last) once('result_view', { edited: userEdited ? 'yes' : 'no' });
+    if (shopEl && inView.get(shopEl) && !shopEl.hidden) once('shop_view', {});
+  };
+  if ('IntersectionObserver' in window) {
+    const viewObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => inView.set(e.target, e.isIntersecting));
+      checkViews();
+    }, { threshold: 0.25 });
+    viewObs.observe(out.card);
+    if (shopEl) viewObs.observe(shopEl);
+    // フォームの中のクリック・キーは、inputで書き換わってから数える(先に送るとedited=noで確定してしまうため)
+    const engage = (e) => {
+      if (engaged || (e.target instanceof Element && form.contains(e.target))) return;
+      engaged = true;
+      checkViews();
+    };
+    ['wheel', 'touchmove', 'pointerdown', 'keydown'].forEach((t) => window.addEventListener(t, engage, { passive: true }));
+  }
 
   update(false);
 })();

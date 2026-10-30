@@ -417,7 +417,7 @@ def about_page():
   <h2>端末に保存する情報</h2>
   <p>表示の設定(ライト/ダークモード)と、運営者が自分のアクセスを集計から外すための設定を、お使いのブラウザの中(localStorage)に保存することがあります。入力した数字は保存しません。</p>
   <h2>アクセス解析</h2>
-  <p>サイト改善のため、Googleアナリティクスを使っています。Cookieを使って閲覧ページなどの情報を匿名で集めますが、個人を特定する情報は含みません。ブラウザの設定でCookieを無効にできます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" rel="noopener">Googleのポリシー</a>をご覧ください。紹介リンクが押された回数も記録しますが、計算結果の数字は送りません。</p>
+  <p>サイト改善のため、Googleアナリティクスを使っています。Cookieを使って閲覧ページなどの情報を匿名で集めますが、個人を特定する情報は含みません。ブラウザの設定でCookieを無効にできます。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" rel="noopener">Googleのポリシー</a>をご覧ください。結果や紹介リンクの欄が表示されたか、紹介リンクが押された回数も記録しますが、入力した値や計算結果の数字は送りません。</p>
 </main>
 '''
     return head(f"運営者・プライバシーポリシー|{SITE['name']}", f"{SITE['name']}の運営者情報とプライバシーポリシー。",
