@@ -201,19 +201,24 @@
     p.catch(() => cardsCache.delete(kw));
     return p;
   }
-  // 商品名に「数字+単位」(例: 8kg、401L、14畳、5.5合)があり、その数字が段階の範囲に入るか、別名(例: 1升)を含むか
+  // 商品名に「数字+単位」(例: 8kg、401L、14畳、5.5合)があり、その最大の数字が段階の範囲に入るか、別名(例: 1升)を含むか。
+  // 最大で見るのは、「洗濯12kg・乾燥6kg」を小さい段階に出さないため。data-singleのページ(照明)は、
+  // 「6畳 8畳 12畳」のような選べるまとめ売り(表示価格が一番小さい型のことが多い)を出さないよう、数字が1種類の商品だけにする。
+  // 判定するのは全角を半角にそろえた名前(表示する名前はそのまま)
   function sizeFits(name, want) {
     if (!shopEl.dataset.unit) return true;
     if (want.alias.some((a) => a && name.includes(a))) return true;
     const key = Number(want.key);
     const span = Number(shopEl.dataset.span || 0);
     const re = new RegExp(`(?:^|[^0-9.])(\\d+(?:\\.\\d+)?)\\s*(?:${shopEl.dataset.unit})(?![A-Za-z])`, 'g');
-    for (const m of name.matchAll(re)) {
-      const n = Number(m[1]);
-      if (n >= key - 1e-9 && n <= key + span + 1e-9) return true;
-    }
-    return false;
+    const nums = [...new Set([...name.normalize('NFKC').matchAll(re)].map((m) => Number(m[1])))];
+    if (!nums.length || (shopEl.dataset.single && nums.length > 1)) return false;
+    const n = Math.max(...nums);
+    return n >= key - 1e-9 && n <= key + span + 1e-9;
   }
+  // 効能をうたう語・順位や最上級の語を商品名に含む商品は出さない(PRの枠に、運営者が確かめていない表現を並べないため)。
+  // 楽天ウェブサービスの規約で取得した情報は改変できないので、商品名は削らず、出す商品を選ぶ
+  const CLAIMS = /腰痛|肩こり|骨盤|矯正|猫背|ストレートネック|ヘルニア|疲れない|疲れにくい|治る|改善|医療|1位|No\.?1|ナンバーワン|ランキング|受賞|最安|最高|最強|日本一|世界一|累計/i;
   function card(it) {
     const url = String(it.affiliateUrl || '');
     let img = (it.mediumImageUrls || [])[0];
@@ -260,7 +265,7 @@
         const picked = items.filter((it) => {
           const name = String(it.itemName || '');
           const head = name.replace(/[【［\[(（＼].*?[】］\])）／]/g, '').trim().slice(0, 24);
-          if (!sizeFits(name, want) || seen.has(head)) return false;
+          if (!sizeFits(name, want) || CLAIMS.test(name.normalize('NFKC')) || seen.has(head)) return false;
           seen.add(head);
           return true;
         }).map(card).filter(Boolean).slice(0, 3);

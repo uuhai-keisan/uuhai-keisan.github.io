@@ -282,12 +282,12 @@ def tool_page(t, tools, today):
         by_result = bool(rk.get('by'))
         link_note = '楽天市場の検索結果が新しいタブで開きます。' + ('検索語には結果の数字が入ります。' if by_result else '')
         card_note = ('楽天市場の商品検索から、商品名の容量が結果に合うものを自動で表示しています。運営者が選んだおすすめではありません。' if cd.get('unit')
-                     else f'運営者が決めた検索語(「{esc(rk["keywords"][next(iter(rk["keywords"]))][0])}」)で楽天市場を検索し、レビュー件数の多い順に自動で表示しています。個々の商品は運営者が選んだものではありません。')
+                     else f'運営者が決めた検索語(「{esc(rk["keywords"][next(iter(rk["keywords"]))][0])}」)で楽天市場を検索し、レビュー件数の多い商品から条件に合うものを自動で表示しています。個々の商品は運営者が選んだものではありません。')
         lead_html = f'\n          <p class="shop-lead">{esc(rk["lead"])}</p>' if rk.get('lead') else ''
         items = ''.join(f'<span class="shop-item" data-key="{esc(k)}" data-kw="{esc(rk["keywords"][k][0])}" data-alias="{esc(cd.get("alias", {}).get(k, ""))}" hidden>' + ''.join(f'<span>{h}</span>' for h in hs) + '</span>'
                         for k, hs in rk['links'].items())
         shop_html = f'''
-        <div class="shop" id="shop" data-by="{esc(rk['by'])}" data-genre="{esc(rk.get('genres', {}).get('base', ''))}" data-unit="{esc(cd.get('unit', ''))}" data-span="{cd.get('span', 0)}" data-ng="{esc(cd.get('ng', ''))}" data-min="{cd.get('min', 0)}" hidden>
+        <div class="shop" id="shop" data-by="{esc(rk['by'])}" data-genre="{esc(rk.get('genres', {}).get('base', ''))}" data-unit="{esc(cd.get('unit', ''))}" data-span="{cd.get('span', 0)}" data-single="{'1' if cd.get('single') else ''}" data-ng="{esc(cd.get('ng', ''))}" data-min="{cd.get('min', 0)}" hidden>
 {lead_html}
           <p class="shop-link"><span class="pr-badge">PR</span>{items}</p>
           <p class="shop-note">{link_note}</p>
