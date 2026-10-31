@@ -1,0 +1,92 @@
+[
+  {
+    "name": "計算例 4人 1食分 食器だけ → 24点クラス(ちょうど4人分)",
+    "input": { "people": 4, "meals": "1", "pots": "no" },
+    "expect": { "value": "24点クラス", "details": { "1回に洗う食器": "4人分" } },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "1人 1食分 → 18点クラス",
+    "input": { "people": 1, "meals": "1", "pots": "no" },
+    "expect": { "value": "18点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "3人 1食分 → 18点クラス(約3人分)",
+    "input": { "people": 3, "meals": "1", "pots": "no" },
+    "expect": { "value": "18点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "5人 1食分 → 40点クラス",
+    "input": { "people": 5, "meals": "1", "pots": "no" },
+    "expect": { "value": "40点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "6人 1食分 → 44点クラス",
+    "input": { "people": 6, "meals": "1", "pots": "no" },
+    "expect": { "value": "44点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "2人 2食分 4人分 → 24点クラス",
+    "input": { "people": 2, "meals": "2", "pots": "no" },
+    "expect": { "value": "24点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "2人 3食分 6人分 → 44点クラス",
+    "input": { "people": 2, "meals": "3", "pots": "no" },
+    "expect": { "value": "44点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "鍋あり 4人 1食分 → 4+2=6人分で44点クラス",
+    "input": { "people": 4, "meals": "1", "pots": "yes" },
+    "expect": { "value": "44点クラス", "details": { "鍋やフライパンの分": "2人分として足す(合計6人分)" } },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "鍋あり 1人 1食分 → 3人分で18点クラス",
+    "input": { "people": 1, "meals": "1", "pots": "yes" },
+    "expect": { "value": "18点クラス" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "鍋あり 6人 1食分 → 8人分で2回",
+    "input": { "people": 6, "meals": "1", "pots": "yes" },
+    "expect": { "value": "44点でも2回に分ける" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "4人 3食分 12人分 → 2回",
+    "input": { "people": 4, "meals": "3", "pots": "no" },
+    "expect": { "value": "44点でも2回に分ける", "details": { "約6人分(44点)の機種なら": "2回に分けて洗う" } },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "上限10人 1食分 → 2回",
+    "input": { "people": 10, "meals": "1", "pots": "no" },
+    "expect": { "value": "44点でも2回に分ける" },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "人数0 → エラー",
+    "input": { "people": 0, "meals": "1", "pots": "no" },
+    "expect": { "error": true },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "人数11 → エラー",
+    "input": { "people": 11, "meals": "1", "pots": "no" },
+    "expect": { "error": true },
+    "today": "2026-11-01"
+  },
+  {
+    "name": "人数が小数 → エラー",
+    "input": { "people": 2.5, "meals": "1", "pots": "no" },
+    "expect": { "error": true },
+    "today": "2026-11-01"
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "slug": "shokusenki-ten",
+  "category": "life",
+  "icon": "🍽️",
+  "late": true,
+  "updated": "2026-10-31",
+  "title": "食洗機は何点・何人用?家族の人数から容量を計算|18点・24点・40点・深型の目安",
+  "h1": "食洗機は何点(何人用)が合うか計算",
+  "kw": "食洗機の容量(何点・何人用)",
+  "description": "家族の人数、1回に何食分をまとめて洗うか、鍋も入れるかを選ぶと、食洗機は18点・24点・40点・44点(深型)のどのクラスが合うかの目安が分かります。",
+  "tldr": "1回に洗う量は「人数×1回に洗う食数」の人分で、その人分が入るクラスが目安です。メーカーの表示では、18点が約3人分、24点が4人分、40点が約5人分、44点が約6人分です。毎食洗うなら、1〜3人は18点、4人は24点、5人は40点、6人は44点(深型)が目安で、鍋やフライパンも入れるなら2人分を足して選びます。",
+  "inputs": [
+    {
+      "id": "people",
+      "type": "number",
+      "label": "家族の人数",
+      "unit": "人",
+      "min": 1,
+      "max": 10,
+      "default": 4
+    },
+    {
+      "id": "meals",
+      "type": "select",
+      "label": "1回に洗う量",
+      "options": [
+        [
+          "1",
+          "1食分ずつ洗う"
+        ],
+        [
+          "2",
+          "2食分をまとめて(朝と夜など)"
+        ],
+        [
+          "3",
+          "3食分をまとめて"
+        ]
+      ],
+      "default": "1"
+    },
+    {
+      "id": "pots",
+      "type": "select",
+      "label": "鍋やフライパンも食洗機で洗う",
+      "options": [
+        [
+          "no",
+          "食器だけ"
+        ],
+        [
+          "yes",
+          "鍋やフライパンも入れる"
+        ]
+      ],
+      "default": "no"
+    }
+  ],
+  "howto_html": "<ol><li>「家族の人数」に、食器を使う人の数を入れます。</li><li>「1回に洗う量」で、毎食洗うか、2食分(朝と夜など)や3食分をまとめて洗うかを選びます。</li><li>鍋やフライパンも食洗機で洗いたいなら「鍋やフライパンも入れる」を選びます。</li><li>合う食洗機の容量のクラス(18点・24点・40点・44点)が表示されます。</li></ol>",
+  "formula_html": "<p>食洗機の容量は、大きさの決まった「標準食器」が何点入るかと、それが約何人分かで表示されます(日本電機工業会の自主基準)。メーカーの表示は、18点が約3人分(パナソニック NP-TCR5)、24点が4人分(パナソニック NP-TSK2)、40点が約5人分(パナソニック NP-TZ500、三菱電機 EW-45R2B)、44点が約6人用(三菱電機 EW-45MD1SU)です。</p><p>1回に洗う量=人数×1回に洗う食数(人分)を出し、それが入るいちばん小さいクラスを選びます。1人分の点数は機種によって6〜8点と違うので、点数を人数で割る計算はしていません。約6人用(44点)の機種でも入りきらない場合は、何回に分けて洗えばよいかを表示します。</p><p>鍋やフライパンは標準食器の点数に入っていません。パナソニックのNP-TSK2は、食器だけなら4人分(24点)、フライパンなどの調理器具も入れると食器は2人分としています。そこで「鍋やフライパンも入れる」を選ぶと、調理器具が2人分の場所をとるとして足しています。これはこの表示から置いたページの目安で、メーカーの基準ではありません。</p>",
+  "example_html": "<p>家族の人数4人、毎食(1食分ずつ)洗い、食器だけを入れるとします。4人×1食=4人分です。4人分が入るいちばん小さいクラスは24点クラス(4人分)ですが、ちょうどいっぱいなので、大皿が多い家庭は40点クラスも候補です。鍋やフライパンも入れるなら2人分を足して6人分になり、44点クラス(約6人分)になります。ページの初期値には、この例の数字が入っています。例として置いた値で、何かの基準ではありません。</p>",
+  "table": {
+    "title": "家族の人数と1回に洗う量ごとの食洗機のクラスの目安",
+    "note": "食器だけを入れる場合です。鍋やフライパンも入れるなら、2人分を足した人数の行を見てください。",
+    "corner": "人数 \\ 1回に洗う量",
+    "base": {
+      "pots": "no"
+    },
+    "rows": {
+      "input": "people",
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "labels": [
+        "1人",
+        "2人",
+        "3人",
+        "4人",
+        "5人",
+        "6人"
+      ]
+    },
+    "cols": {
+      "input": "meals",
+      "values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "labels": [
+        "1食分ずつ",
+        "2食分まとめて",
+        "3食分まとめて"
+      ]
+    }
+  },
+  "checks": {
+    "title": "食洗機を選ぶときに見る3点",
+    "items": [
+      {
+        "h": "置く場所の寸法(ドアを開けたときも)",
+        "html": "<p>据置型は、本体の幅・奥行・高さに加えて、ドアを開けたときの寸法も仕様表に載っています。例えば18点の機種は幅470mm・奥行300mmで、ドアを開けると奥行598mmになります(<a href=\"https://panasonic.jp/dish/products/NP-TCB4/spec.html\" rel=\"noopener\">パナソニック NP-TCB4の仕様</a>)。置き場所はドアを開けた寸法で測ります。</p>"
+      },
+      {
+        "h": "鍋も洗うなら、庫内の深さ",
+        "html": "<p>ビルトインの食洗機には、庫内の深さによってディープタイプ(深型)とミドルタイプ(浅型)があります(<a href=\"https://sumai.panasonic.jp/dishwasher/\" rel=\"noopener\">パナソニックのビルトイン食器洗い乾燥機</a>)。鍋やフライパンもまとめて洗いたいなら、深型が候補になります。</p>"
+      },
+      {
+        "h": "点数は「標準食器」で数えた値",
+        "html": "<p>表示の点数と人分は、大きさの決まった標準食器の場合です(日本電機工業会の自主基準)。三菱電機の仕様書では、約5人用40点の機種は大皿が外径24cm以下、約6人用44点の機種は外径27cm以下などと決まっています(<a href=\"https://dl.mitsubishielectric.co.jp/dl/ldg/wink/ssl/wink_doc/m_contents/wink/MA_SN/ew-45r2b_0_sn.pdf\" rel=\"noopener\">EW-45R2Bの仕様書(PDF)</a>・<a href=\"https://dl.mitsubishielectric.co.jp/dl/ldg/wink/ssl/wink_doc/m_contents/wink/MA_SN/ew-45md1su_0_sn.pdf\" rel=\"noopener\">EW-45MD1SUの仕様書(PDF)</a>)。大皿や深い器が多い家庭は、表示ほどは入らないことがあります。</p>"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "4人家族は何点の食洗機が合いますか。",
+      "a": "毎食洗い、食器だけを入れるなら4人分なので、24点クラス(4人分)でちょうど入ります。余裕をみるなら40点クラス(約5人分)です。鍋やフライパンも入れるなら2人分を足して6人分になり44点クラス、2食分をまとめて洗うなら8人分になり、44点の機種でも2回に分けて洗う量です。"
+    },
+    {
+      "q": "「○人分」と「○点」はどちらを見ればよいですか。",
+      "a": "仕様表の点数と、メーカーが日本電機工業会の自主基準で表示している人分の両方を見ます。1人分の点数は機種によって違い、18点で約3人分の機種も、40点で約5人分の機種もあります。通販の商品名の「○人用」は店が書いた表現のこともあるので、メーカーの仕様表で確かめてください。"
+    },
+    {
+      "q": "一人暮らしなら何点で足りますか。",
+      "a": "毎食洗うなら1人分です。パナソニックには1人分(食器6点)の小型機もあります(NP-TML1)。朝と夜の2食分や、鍋も一緒に洗うなら3人分になるので、18点クラス(約3人分)が目安です。"
+    },
+    {
+      "q": "鍋やフライパンは点数に入りますか。",
+      "a": "入りません。三菱電機の仕様書にある標準食器の内訳は、大皿・中鉢・茶わん・吸物わん・小皿・コップ・湯のみと、はし・スプーンなどだけです。パナソニックのNP-TSK2は、食器だけなら4人分、調理器具も入れると食器は2人分としているので、このページでは鍋やフライパンを2人分として足しています。"
+    },
+    {
+      "q": "1日1回まとめて洗う場合はどう考えますか。",
+      "a": "家で食べる食数で選びます。朝と夜なら「2食分をまとめて」、昼も家で食べるなら「3食分をまとめて」です。2人で朝と夜なら4人分(24点クラス)、3人なら6人分(44点クラス)、4人以上は44点の機種でも2回に分ける量です。"
+    }
+  ],
+  "sources": [
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TML1」",
+      "url": "https://panasonic.jp/dish/products/NP-TML1.html",
+      "note": "1人分の食器が一度に洗える(食器6点、日本電機工業会自主基準)"
+    },
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TCR5」",
+      "url": "https://panasonic.jp/dish/products/NP-TCR5.html",
+      "note": "約3人分の食器18点(日本電機工業会自主基準)"
+    },
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TSK2」",
+      "url": "https://panasonic.jp/dish/products/NP-TSK2.html",
+      "note": "食器だけなら4人分(24点)、調理器具も入れると食器2人分(12点)"
+    },
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TZ500」",
+      "url": "https://panasonic.jp/dish/products/NP-TZ500.html",
+      "note": "家族約5人分(日本電機工業会自主基準)"
+    },
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TZ500 仕様」",
+      "url": "https://panasonic.jp/dish/products/NP-TZ500/spec.html",
+      "note": "容量(食器点数)40点(標準食器、日本電機工業会自主基準)"
+    },
+    {
+      "name": "三菱電機「ビルトイン食器洗い乾燥機 EW-45R2B 仕様書」(PDF)",
+      "url": "https://dl.mitsubishielectric.co.jp/dl/ldg/wink/ssl/wink_doc/m_contents/wink/MA_SN/ew-45r2b_0_sn.pdf",
+      "note": "標準食器収納容量 約5人用40点、標準食器の内訳と大きさ"
+    },
+    {
+      "name": "三菱電機「ビルトイン食器洗い乾燥機 EW-45MD1SU 仕様書」(PDF)",
+      "url": "https://dl.mitsubishielectric.co.jp/dl/ldg/wink/ssl/wink_doc/m_contents/wink/MA_SN/ew-45md1su_0_sn.pdf",
+      "note": "標準食器収納容量 約6人用44点"
+    },
+    {
+      "name": "パナソニック「食器洗い乾燥機 NP-TCB4 仕様」",
+      "url": "https://panasonic.jp/dish/products/NP-TCB4/spec.html",
+      "note": "18点の機種の本体寸法とドアを開けたときの寸法"
+    },
+    {
+      "name": "パナソニック「ビルトイン食器洗い乾燥機」",
+      "url": "https://sumai.panasonic.jp/dishwasher/",
+      "note": "庫内の深さでディープタイプ(深型)とミドルタイプ(浅型)がある"
+    }
+  ],
+  "share": "うちに合う食洗機の目安は{result}だった",
+  "shop": {
+    "rakuten": {
+      "by": "size",
+      "keywords": {
+        "18": [
+          "食洗機 18点"
+        ],
+        "24": [
+          "食洗機 24点"
+        ],
+        "40": [
+          "食洗機 40点"
+        ],
+        "44": [
+          "食洗機 深型"
+        ]
+      },
+      "genres": {
+        "base": "208489"
+      },
+      "links": {
+        "18": [
+          "<a href=\"https://hb.afl.rakuten.co.jp/hgc/567f9cc6.631b3687.567f9cc7.3d3a8a85/_RTLink150744?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E9%A3%9F%E6%B4%97%E6%A9%9F%2B18%E7%82%B9%2F565116%2F%3Fs%3D5&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">楽天市場で「食洗機 18点」を探す</a>"
+        ],
+        "24": [
+          "<a href=\"https://hb.afl.rakuten.co.jp/hgc/567f9cc6.631b3687.567f9cc7.3d3a8a85/_RTLink150744?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E9%A3%9F%E6%B4%97%E6%A9%9F%2B24%E7%82%B9%2F565116%2F%3Fs%3D5&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">楽天市場で「食洗機 24点」を探す</a>"
+        ],
+        "40": [
+          "<a href=\"https://hb.afl.rakuten.co.jp/hgc/567f9cc6.631b3687.567f9cc7.3d3a8a85/_RTLink150744?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E9%A3%9F%E6%B4%97%E6%A9%9F%2B40%E7%82%B9%2F208489%2F%3Fs%3D5&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">楽天市場で「食洗機 40点」を探す</a>"
+        ],
+        "44": [
+          "<a href=\"https://hb.afl.rakuten.co.jp/hgc/567f9cc6.631b3687.567f9cc7.3d3a8a85/_RTLink150744?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%E9%A3%9F%E6%B4%97%E6%A9%9F%2B%E6%B7%B1%E5%9E%8B%2F212407%2F%3Fs%3D5&link_type=text&ut=eyJwYWdlIjoidXJsIiwidHlwZSI6InRleHQiLCJjb2wiOjF9\" target=\"_blank\" rel=\"nofollow sponsored noopener\" style=\"word-wrap:break-word;\">楽天市場で深型のビルトイン食洗機を探す</a>"
+        ]
+      },
+      "card": {
+        "unit": "点",
+        "span": 4,
+        "ng": "中古 業務用 交換用 部品 ホース 分岐水栓 洗剤",
+        "alias": {},
+        "min": 10000
+      }
+    }
+  }
+}
