@@ -37,6 +37,7 @@ _tools/                       build.py / test_calcs.mjs / check.py
 - 税・医療・投資・保険・薬・妊娠週数は扱わない
 - 事実・制度・相場を含むツールは `sources` に出典を書く
 - 10/17以降に足すツールは spec に `"late": true`(最初の12本の関連リンクに入れない。トップとsitemapには載る)
+- `725e701dc9cb54dd9576d164875403d2.txt` はIndexNow(Bing)の鍵で消さない。ページを足す・大きく直したら、そのURLを `api.indexnow.org/indexnow` に送る(host・key・keyLocation・urlList)
 
 ## 楽天(spec.json の `shop.rakuten`)
 
