@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>フレックスの不足時間の繰り越し計算|翌月に何時間まで持ち越せるか</title>
+<meta name="description" content="今月の総労働時間と実労働時間、翌月の総労働時間と暦日数を入れると、足りなかった時間のうち翌月に繰り越せる時間と、繰り越せない時間が分かります。上限は翌月の法定労働時間の総枠です。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/flex-fusoku/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="フレックスの不足時間の繰り越し計算|翌月に何時間まで持ち越せるか">
+<meta property="og:description" content="今月の総労働時間と実労働時間、翌月の総労働時間と暦日数を入れると、足りなかった時間のうち翌月に繰り越せる時間と、繰り越せない時間が分かります。上限は翌月の法定労働時間の総枠です。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/flex-fusoku/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/flex-fusoku.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=f355c839">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "フレックスの不足時間の繰り越し計算",
+  "url": "https://uuhai-keisan.github.io/flex-fusoku/",
+  "description": "今月の総労働時間と実労働時間、翌月の総労働時間と暦日数を入れると、足りなかった時間のうち翌月に繰り越せる時間と、繰り越せない時間が分かります。上限は翌月の法定労働時間の総枠です。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-11-20",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "フレックスの不足時間の繰り越し計算",
+      "item": "https://uuhai-keisan.github.io/flex-fusoku/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › <span aria-current="page">フレックスの不足時間の繰り越し計算</span></nav>
+  <h1>フレックスの不足時間の繰り越し計算</h1>
+  <p class="lead">今月の総労働時間と実労働時間、翌月の総労働時間と暦日数を入れると、足りなかった時間のうち翌月に繰り越せる時間と、繰り越せない時間が分かります。上限は翌月の法定労働時間の総枠です。</p>
+  <p class="updated">最終更新: <time datetime="2026-11-20">2026年11月20日</time></p>
+  <p class="tldr">フレックスタイム制で足りなかった時間は、繰り越した後の翌月の総労働時間が法定労働時間の総枠(30日の月なら171.4時間)に収まる範囲で翌月に繰り越せます。超えた時間は繰り越せません。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="フレックスの不足、翌月に{carry}繰り越せる計算" novalidate>
+      <div class="field field-half"><label for="in-total">今月の総労働時間(会社が決めた時間)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-total" name="total" inputmode="decimal" min="0" step="0.5" value="160"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-worked">今月の実労働時間<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-worked" name="worked" inputmode="decimal" min="0" step="0.25" value="150"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-next_total">翌月の総労働時間(会社が決めた時間)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-next_total" name="next_total" inputmode="decimal" min="0" step="0.5" value="168"><span class="unit" aria-hidden="true">時間</span></div></div><fieldset class="field field-half"><legend>翌月の暦日数</legend><div class="seg"><label class="seg-opt"><input type="radio" name="next_days" value="28"><span>28日</span></label><label class="seg-opt"><input type="radio" name="next_days" value="29"><span>29日</span></label><label class="seg-opt"><input type="radio" name="next_days" value="30"><span>30日</span></label><label class="seg-opt"><input type="radio" name="next_days" value="31" checked><span>31日</span></label></div></fieldset><fieldset class="field"><legend>週の法定労働時間</legend><div class="seg"><label class="seg-opt"><input type="radio" name="rule" value="normal" checked><span>ふつう(週40時間)</span></label><label class="seg-opt"><input type="radio" name="rule" value="tokurei"><span>特例措置対象事業場(週44時間)</span></label></div></fieldset>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xにポスト</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>フレックスの不足時間の繰り越し計算の使い方</h2>
+    <ol><li>「今月の総労働時間」と「今月の実労働時間」を入れます。</li><li>「翌月の総労働時間」と「翌月の暦日数」を入れます。翌月の総労働時間は、繰り越しを足す前の、会社が決めた時間です。</li><li>「週の法定労働時間」は、分からなければ「ふつう(週40時間)」のままにします。</li><li>翌月に繰り越せる時間と、繰り越せない時間が表示されます。</li></ol>
+    <h2>フレックスの不足時間の繰り越しの計算式</h2>
+    <p>厚生労働省のページ「労働時間に過不足が生じた場合について」では、フレックスタイム制で実労働時間が総労働時間に足りなかったとき、不足分を加えた翌月の総労働時間が法定労働時間の総枠の範囲内である限り、翌月に繰り越して清算する方法と、不足分の賃金をカットする方法があるとされています。どちらにするかは会社の規程によります。</p><p>繰り越せる時間=今月の不足時間と「翌月の総枠−翌月の総労働時間」の小さいほうです。翌月の総枠は「40時間×翌月の暦日数÷7」で、31日で177.1時間、30日で171.4時間、29日で165.7時間、28日で160.0時間です。特例措置対象事業場は週44時間で計算します(厚生労働省のパンフレット)。繰り越した後の翌月の時間が総枠を超えないよう、繰り越せる時間は分単位で切り捨てて表示します。</p><p>同じページでは、総労働時間を超えて働いた時間は、翌月に繰り越して翌月の総労働時間から差し引くことはできず(労働基準法第24条に違反)、その清算期間内で清算しなければならないとされています。このツールは清算期間が1か月以内の場合を想定しています。</p>
+    <h2>フレックスの不足時間の繰り越しの計算例</h2>
+    <p>今月の総労働時間160時間・実労働時間150時間、翌月の総労働時間168時間・暦日数31日・週40時間の場合です。不足時間は10時間です。翌月の総枠は40×31÷7=177.14時間で、168時間に足せるのは177.14−168=9.14時間です。分単位で切り捨てて、繰り越せるのは9時間8分、繰り越せないのは52分です。</p><p>翌月の総労働時間が160時間・暦日数30日なら、総枠171.43時間まで11.43時間の余裕があるので、10時間すべてを繰り越せます。</p>
+    <h2>フレックスの不足時間の繰り越しの早見表</h2>
+    <p>今月の実労働時間と翌月の暦日数から出した、翌月に繰り越せる時間です(週40時間)。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="今月の総労働時間160時間、翌月の総労働時間168時間の場合に繰り越せる時間">
+      <table class="quick-table"><caption>今月の総労働時間160時間、翌月の総労働時間168時間の場合に繰り越せる時間</caption>
+        <thead><tr><th scope="col">今月の実労働 \ 翌月の暦日数</th><th scope="col">28日</th><th scope="col">29日</th><th scope="col">30日</th><th scope="col">31日</th></tr></thead>
+        <tbody><tr><th scope="row">140時間</th><td>0時間0分</td><td>0時間0分</td><td>3時間25分</td><td>9時間8分</td></tr><tr><th scope="row">150時間</th><td>0時間0分</td><td>0時間0分</td><td>3時間25分</td><td>9時間8分</td></tr><tr><th scope="row">155時間</th><td>0時間0分</td><td>0時間0分</td><td>3時間25分</td><td>5時間0分</td></tr><tr><th scope="row">158時間</th><td>0時間0分</td><td>0時間0分</td><td>2時間0分</td><td>2時間0分</td></tr></tbody>
+      </table>
+    </div>
+    <h2>フレックスの不足時間の繰り越しのよくある質問</h2>
+    <div class="faq"><details><summary>足りない時間は必ず翌月に繰り越されますか?</summary><p>いいえ。厚生労働省のページでは、翌月に繰り越して清算する方法と、不足分の賃金をカットする方法があるとされています。どちらにするか、繰り越しの上限を何時間にするかは会社の規程によります。就業規則やフレックスタイム制の労使協定を確認してください。</p></details><details><summary>働きすぎた時間を翌月に回して、翌月に早く帰れますか?</summary><p>厚生労働省のページでは、総労働時間を超えて働いた時間を翌月の総労働時間に充てることは、その月の労働の対価の一部が支払われないことになり、労働基準法第24条に違反するとされています。超えた時間はその月の賃金で清算されます。</p></details><details><summary>繰り越しの上限はなぜ法定労働時間の総枠なのですか?</summary><p>同じページでは、あらかじめ法定労働時間の総枠を超えて働くことを予定するような制度は適当でないので、繰り越した時間を加えた翌月の労働時間が総枠の範囲内になるよう、繰り越せる時間の限度を定める必要があるとされています。会社がこれより小さい上限を決めていることもあります。</p></details><details><summary>繰り越した後、翌月は1日何時間働けばいいですか?</summary><p>「繰り越した後の翌月の総労働時間」を、フレックスの残り勤務時間計算の「清算期間の総労働時間」に入れると、残りの出勤日に1日何時間働けば足りるかが分かります。</p></details><details><summary>完全週休2日の協定で総枠を「所定労働日数×8時間」にしている場合は?</summary><p>このツールは「40時間(または44時間)×暦日数÷7」の総枠で計算しています。労使協定で総枠を「所定労働日数×8時間」にしている場合は、上限が変わるので会社に確認してください。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://www.mhlw.go.jp/www2/topics/seido/kijunkyoku/flextime/980908time04.htm" rel="noopener">厚生労働省「労働時間に過不足が生じた場合について」</a>(不足分の繰り越しと上限、超過分は繰り越せないこと)</li><li><a href="https://www.mhlw.go.jp/content/001140964.pdf" rel="noopener">厚生労働省「フレックスタイム制のわかりやすい解説&amp;導入の手引き」</a>(法定労働時間の総枠の式、特例措置対象事業場)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../flex-zangyo/">⏱️ フレックスの残業時間計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li><li><a href="../teiki-tsudo/">🚃 在宅勤務の定期と都度払いの比較</a></li><li><a href="../zangyo-mikomi/">📈 残業時間の月末見込み計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
+</div></footer>
+<script src="calc.js?v=def450ab"></script>
+<script src="../assets/site.js?v=8cf7f7fb"></script>
+</body>
+</html>

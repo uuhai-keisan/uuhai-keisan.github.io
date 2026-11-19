@@ -1,0 +1,44 @@
+[
+  {
+    "name": "計算例 160/150 翌月168h 31日 → 9時間8分",
+    "input": { "total": 160, "worked": 150, "next_total": 168, "next_days": "31", "rule": "normal" },
+    "expect": { "value": "9時間8分", "details": { "今月の不足時間": "10時間0分", "翌月の法定労働時間の総枠": "177.1時間(40時間×暦日31日÷7)", "繰り越した後の翌月の総労働時間": "177時間8分", "繰り越せない時間": "0時間52分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "翌月160h 30日 → 全部繰り越せる",
+    "input": { "total": 160, "worked": 150, "next_total": 160, "next_days": "30", "rule": "normal" },
+    "expect": { "value": "10時間0分", "details": { "繰り越せない時間": "0時間0分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "翌月28日 160h → 余裕なし",
+    "input": { "total": 160, "worked": 150, "next_total": 160, "next_days": "28", "rule": "normal" },
+    "expect": { "value": "0時間0分", "details": { "繰り越せない時間": "10時間0分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "特例44h 28日 → 総枠176h",
+    "input": { "total": 160, "worked": 150, "next_total": 160, "next_days": "28", "rule": "tokurei" },
+    "expect": { "value": "10時間0分", "details": { "翌月の法定労働時間の総枠": "176時間(44時間×暦日28日÷7)" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "超過 → 不足なし",
+    "input": { "total": 160, "worked": 165, "next_total": 160, "next_days": "30", "rule": "normal" },
+    "expect": { "value": "不足なし", "details": { "総労働時間を超えた時間": "5時間0分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "ちょうど → 不足なし",
+    "input": { "total": 160, "worked": 160, "next_total": 160, "next_days": "30", "rule": "normal" },
+    "expect": { "value": "不足なし" },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "翌月の総労働時間なし → エラー",
+    "input": { "total": 160, "worked": 150, "next_total": 0, "next_days": "30", "rule": "normal" },
+    "expect": { "error": true },
+    "today": "2026-11-20"
+  }
+]
