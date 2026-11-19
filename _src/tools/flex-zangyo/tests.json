@@ -1,0 +1,50 @@
+[
+  {
+    "name": "計算例 180h 160h 30日 ふつう",
+    "input": { "worked": 180, "total": 160, "days": "30", "workdays": 21, "rule": "normal" },
+    "expect": { "value": "8時間34分", "details": { "法定労働時間の総枠": "171.4時間(40時間×暦日30日÷7)", "総労働時間を超えて総枠までの時間(法定内)": "11時間26分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "完全週休2日の協定 22日 → 総枠176h、4時間",
+    "input": { "worked": 180, "total": 160, "days": "30", "workdays": 22, "rule": "week5" },
+    "expect": { "value": "4時間0分", "details": { "法定労働時間の総枠": "176時間(8時間×所定労働日数22日)" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "特例措置 31日 → 総枠194.9h",
+    "input": { "worked": 200, "total": 170, "days": "31", "workdays": 21, "rule": "tokurei" },
+    "expect": { "value": "5時間9分", "details": { "法定労働時間の総枠": "194.9時間(44時間×暦日31日÷7)" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "総枠以内・総労働時間超え → 0、法定内あり",
+    "input": { "worked": 165, "total": 160, "days": "31", "workdays": 21, "rule": "normal" },
+    "expect": { "value": "0時間0分", "details": { "総労働時間を超えて総枠までの時間(法定内)": "5時間0分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "総労働時間に届かない",
+    "input": { "worked": 150, "total": 160, "days": "30", "workdays": 21, "rule": "normal" },
+    "expect": { "value": "0時間0分", "details": { "総労働時間に足りない時間": "10時間0分" } },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "28日 160h ちょうど → 0",
+    "input": { "worked": 160, "total": 160, "days": "28", "workdays": 20, "rule": "normal" },
+    "expect": { "value": "0時間0分" },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "実労働なし → エラー",
+    "input": { "worked": null, "total": 160, "days": "30", "workdays": 21, "rule": "normal" },
+    "expect": { "error": true },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "所定労働日数が暦日数を超える → エラー",
+    "input": { "worked": 180, "total": 160, "days": "30", "workdays": 31, "rule": "week5" },
+    "expect": { "error": true },
+    "today": "2026-11-20"
+  }
+]

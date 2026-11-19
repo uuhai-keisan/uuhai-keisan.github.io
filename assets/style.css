@@ -174,7 +174,9 @@ input[type="date"] { min-height: 48px; line-height: 1.3; }
 .result-details dd { margin: 0; font-weight: 600; text-align: right; }
 .result-note { font-size: 14px; color: var(--result-sub); margin: 10px 0 0; }
 .result-error { background: var(--error-soft); color: var(--error); border-radius: 10px; padding: 10px 12px; margin: 0; }
-.result-actions { margin-top: 14px; display: grid; gap: 8px; }
+.result-actions { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.result-actions > :not(.btn) { grid-column: 1 / -1; }
+.result-actions > .btn { min-height: 40px; padding: 0 12px; font-size: 14px; font-weight: 600; }
 .share-sub, .maker { font-size: 13px; color: var(--ink-sub); margin: 0; text-align: center; }
 
 /* スマホの結果バー(結果カードが画面より下にある間だけ表示) */
@@ -217,7 +219,7 @@ input[type="date"] { min-height: 48px; line-height: 1.3; }
 .cat-title { margin-top: 32px; }
 /* hidden属性をdisplay指定(.result-actions等)より優先する。入力エラー時に古い結果のボタンやリンクが残らないように */
 [hidden] { display: none !important; }
-.shop { margin: 6px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); text-align: center; }
+.shop { margin: 0 0 6px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); text-align: center; }
 .shop p { margin: 0; }
 .shop-link { display: flex; justify-content: center; align-items: flex-start; gap: 6px; font-size: 15px; }
 .shop-link .pr-badge { flex: none; margin: 10px 0 0; }

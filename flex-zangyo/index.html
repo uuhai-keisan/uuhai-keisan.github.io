@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>フレックスの残業時間計算|清算期間の時間外労働は何時間か(法定内の時間も)</title>
+<meta name="description" content="清算期間の実労働時間と会社の総労働時間、暦日数を入れると、法定労働時間の総枠を超えた時間外労働と、総労働時間を超えて総枠までの法定内の時間が分かります。完全週休2日の協定・特例措置にも対応。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/flex-zangyo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="フレックスの残業時間計算|清算期間の時間外労働は何時間か(法定内の時間も)">
+<meta property="og:description" content="清算期間の実労働時間と会社の総労働時間、暦日数を入れると、法定労働時間の総枠を超えた時間外労働と、総労働時間を超えて総枠までの法定内の時間が分かります。完全週休2日の協定・特例措置にも対応。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/flex-zangyo/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/flex-zangyo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=f355c839">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "フレックスの残業時間計算",
+  "url": "https://uuhai-keisan.github.io/flex-zangyo/",
+  "description": "清算期間の実労働時間と会社の総労働時間、暦日数を入れると、法定労働時間の総枠を超えた時間外労働と、総労働時間を超えて総枠までの法定内の時間が分かります。完全週休2日の協定・特例措置にも対応。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-11-20",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "フレックスの残業時間計算",
+      "item": "https://uuhai-keisan.github.io/flex-zangyo/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › <span aria-current="page">フレックスの残業時間計算</span></nav>
+  <h1>フレックスの残業時間計算</h1>
+  <p class="lead">清算期間の実労働時間と会社の総労働時間、暦日数を入れると、法定労働時間の総枠を超えた時間外労働と、総労働時間を超えて総枠までの法定内の時間が分かります。完全週休2日の協定・特例措置にも対応。</p>
+  <p class="updated">最終更新: <time datetime="2026-11-20">2026年11月20日</time></p>
+  <p class="tldr">フレックスタイム制の時間外労働は「清算期間の実労働時間−法定労働時間の総枠」です。総枠は40時間×暦日数÷7で、30日の月なら171.4時間です。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="フレックスの時間外労働、今月は{over}の計算" novalidate>
+      <div class="field field-half"><label for="in-worked">清算期間の実労働時間(見込みでも可)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-worked" name="worked" inputmode="decimal" min="0" step="0.25" value="180"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-total">会社が決めた総労働時間<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-total" name="total" inputmode="decimal" min="0" step="0.5" value="160"><span class="unit" aria-hidden="true">時間</span></div></div><fieldset class="field field-half"><legend>清算期間の暦日数</legend><div class="seg"><label class="seg-opt"><input type="radio" name="days" value="28"><span>28日</span></label><label class="seg-opt"><input type="radio" name="days" value="29"><span>29日</span></label><label class="seg-opt"><input type="radio" name="days" value="30" checked><span>30日</span></label><label class="seg-opt"><input type="radio" name="days" value="31"><span>31日</span></label></div></fieldset><div class="field field-half"><label for="in-workdays">所定労働日数(完全週休2日の協定のときだけ使います)<span class="sr-only">(単位: 日)</span></label><div class="input-wrap has-unit"><input type="number" id="in-workdays" name="workdays" inputmode="numeric" min="1" max="31" value="21"><span class="unit" aria-hidden="true">日</span></div></div><fieldset class="field"><legend>総枠の決め方</legend><div class="seg"><label class="seg-opt"><input type="radio" name="rule" value="normal" checked><span>ふつう(週40時間)</span></label><label class="seg-opt"><input type="radio" name="rule" value="week5"><span>完全週休2日の協定(8時間×所定労働日数)</span></label><label class="seg-opt"><input type="radio" name="rule" value="tokurei"><span>特例措置対象事業場(週44時間)</span></label></div></fieldset>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xにポスト</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>フレックスの残業時間計算の使い方</h2>
+    <ol><li>「清算期間の実労働時間」に、今の清算期間で働いた時間(月の途中なら月末までの見込み)を入れます。法定休日に働いた時間は除きます。</li><li>「会社が決めた総労働時間」と「清算期間の暦日数」を入れます。</li><li>「総枠の決め方」は、分からなければ「ふつう(週40時間)」のままにします。完全週休2日の協定を選んだときだけ「所定労働日数」を使います。</li><li>時間外労働と、総労働時間を超えて総枠までの時間(法定内)が表示されます。</li></ol>
+    <h2>フレックスの残業時間の計算式</h2>
+    <p>厚生労働省のパンフレット「フレックスタイム制のわかりやすい解説&導入の手引き」では、フレックスタイム制では清算期間を通じて法定労働時間の総枠を超えて働いた時間が時間外労働になるとされています。1日8時間・週40時間を超えた日や週があっても、それだけでは時間外労働になりません。このツールは、清算期間が1か月以内の場合を想定しています。1か月を超える清算期間には、1か月ごとに週平均50時間を超えた時間も時間外労働になるという別の決まりがあります。</p><p>時間外労働=清算期間の実労働時間−法定労働時間の総枠(マイナスなら0)です。総枠は「40時間×清算期間の暦日数÷7」で、31日で177.1時間、30日で171.4時間、29日で165.7時間、28日で160.0時間です。同パンフレットでは、特例措置対象事業場は週の法定労働時間を44時間として計算するとされています。また、完全週休2日の労働者は、労使協定を結べば「所定労働日数×8時間」を総枠にできるとされています。</p><p>会社が決めた総労働時間を超えても、総枠までの時間は時間外労働ではありません(このツールでは「法定内」と表示します)。この時間の賃金の扱いは会社の規程によります。分単位で四捨五入して「○時間○分」で表示します。</p>
+    <h2>フレックスの残業時間の計算例</h2>
+    <p>実労働時間180時間・総労働時間160時間・暦日数30日・ふつう(週40時間)の場合です。総枠は40×30÷7=171.43時間です。時間外労働は180−171.43=8.57時間で、8時間34分です。総労働時間を超えて総枠までの時間(法定内)は171.43−160=11.43時間で、11時間26分です。</p><p>同じ条件で完全週休2日の協定があり、所定労働日数が22日なら、総枠は8×22=176時間になり、時間外労働は4時間0分です。</p>
+    <h2>フレックスの残業時間の早見表</h2>
+    <p>清算期間の実労働時間と暦日数から出した時間外労働です。総労働時間を超えて総枠までの時間は含みません。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="総労働時間160時間・ふつう(週40時間)の場合の時間外労働">
+      <table class="quick-table"><caption>総労働時間160時間・ふつう(週40時間)の場合の時間外労働</caption>
+        <thead><tr><th scope="col">実労働 \ 暦日数</th><th scope="col">28日</th><th scope="col">29日</th><th scope="col">30日</th><th scope="col">31日</th></tr></thead>
+        <tbody><tr><th scope="row">165時間</th><td>5時間0分</td><td>0時間0分</td><td>0時間0分</td><td>0時間0分</td></tr><tr><th scope="row">170時間</th><td>10時間0分</td><td>4時間17分</td><td>0時間0分</td><td>0時間0分</td></tr><tr><th scope="row">175時間</th><td>15時間0分</td><td>9時間17分</td><td>3時間34分</td><td>0時間0分</td></tr><tr><th scope="row">180時間</th><td>20時間0分</td><td>14時間17分</td><td>8時間34分</td><td>2時間51分</td></tr><tr><th scope="row">190時間</th><td>30時間0分</td><td>24時間17分</td><td>18時間34分</td><td>12時間51分</td></tr><tr><th scope="row">200時間</th><td>40時間0分</td><td>34時間17分</td><td>28時間34分</td><td>22時間51分</td></tr></tbody>
+      </table>
+    </div>
+    <h2>フレックスの残業時間のよくある質問</h2>
+    <div class="faq"><details><summary>1日10時間働いた日は、その日に2時間の残業になりますか?</summary><p>厚生労働省のパンフレットでは、フレックスタイム制では1日8時間・週40時間を超えて働いても、ただちに時間外労働にはならないとされています。清算期間が終わったときに、実労働時間の合計が法定労働時間の総枠を超えていれば、超えた分が時間外労働になります。</p></details><details><summary>会社の総労働時間を超えた分は全部残業代が出ますか?</summary><p>総労働時間を超えても法定労働時間の総枠までの時間は、法律上の時間外労働ではありません。この時間に賃金がどう払われるかは会社の規程によります。総枠を超えた時間外労働には、36協定と割増賃金の支払いが必要とされています。</p></details><details><summary>有給休暇を取った日の時間は実労働時間に入れますか?</summary><p>厚生労働省のパンフレットでは、フレックスタイム制で年次有給休暇を1日取った日は、労使協定で決めた「標準となる1日の労働時間」を働いたものとして扱う必要があるとされています。時間外労働の計算でこの時間をどう扱うかは会社の規程によって違うことがあるので、就業規則や人事に確認してください。</p></details><details><summary>法定休日に働いた時間はどうなりますか?</summary><p>同パンフレットでは、法定休日(1週間に1日の休日)に働いた時間は、清算期間の総労働時間や時間外労働とは別に扱い、35%以上の割増賃金が必要とされています。このツールの実労働時間には含めないでください。</p></details><details><summary>完全週休2日の協定はどんなときに使いますか?</summary><p>同パンフレットでは、土日休みで標準の1日7時間45分の会社が31日の月に23日働くと、総労働時間178.25時間が総枠177.1時間を超え、残業のない働き方でも時間外労働が出てしまう例が紹介されています。週5日の労働者で、労使協定で「所定労働日数×8時間」を総枠にしている場合は、この選択肢を選んでください。協定があるかは会社に確認してください。</p></details><details><summary>月の途中でも使えますか?</summary><p>使えます。月末までの見込みの実労働時間を入れると、このペースで時間外労働が何時間になりそうかが分かります。残りの出勤日に1日何時間働けば総労働時間に届くかは、フレックスの残り勤務時間計算で計算できます。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://www.mhlw.go.jp/content/001140964.pdf" rel="noopener">厚生労働省「フレックスタイム制のわかりやすい解説&amp;導入の手引き」</a>(時間外労働の考え方、総枠の式、特例措置、完全週休2日の協定、有給休暇、法定休日)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../zangyo-mikomi/">📈 残業時間の月末見込み計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li><li><a href="../teiki-tsudo/">🚃 在宅勤務の定期と都度払いの比較</a></li><li><a href="../reizouko-yoryo/">🧊 冷蔵庫の容量の目安を計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
+</div></footer>
+<script src="calc.js?v=1e44cbf7"></script>
+<script src="../assets/site.js?v=8cf7f7fb"></script>
+</body>
+</html>

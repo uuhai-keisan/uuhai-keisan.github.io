@@ -1,6 +1,7 @@
 {
   "slug": "flex-nokori",
   "category": "work",
+  "see": ["flex-zangyo"],
   "icon": "🕘",
   "updated": "2026-10-16",
   "title": "フレックスの残り勤務時間計算|1日あたり何時間働けば足りるか",

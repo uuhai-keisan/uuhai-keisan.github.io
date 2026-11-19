@@ -227,10 +227,10 @@ def tool_page(t, tools, today):
     url = f'{BASE}{t["slug"]}/'
     # 関連リンク: 同じカテゴリは全部、残りの枠はページごとに開始位置をずらして選ぶ(被リンクの偏りを防ぐ)
     live = [o for o in tools if not o.get('draft')]
-    # late(検証の途中で足したツール)は、元の12本の関連リンクに入れない(11/20判定まで既存ページを変えないため)
-    if not t.get('late'):
-        live = [o for o in live if not o.get('late')]
+    # 11/20の判定後は、追加ツール(late)も元の12本の関連リンクに入れる。specのseeに書いたページは先頭に出す
+    see = t.get('see', [])
     same = [o for o in live if o is not t and o['category'] == t['category']]
+    same.sort(key=lambda o: see.index(o['slug']) if o['slug'] in see else len(see))
     others = [o for o in live if o['category'] != t['category']]
     if others:
         k = (live.index(t) if t in live else 0) % len(others)
@@ -341,11 +341,11 @@ def tool_page(t, tools, today):
           <p class="result-note" id="result-note" hidden></p>
         </div>
       </div>
-      <div class="result-actions" id="result-actions" hidden>
-        <button class="btn btn-x" type="button" id="share-btn">{X_ICON}この結果をXにポスト</button>
+      <div class="result-actions" id="result-actions" hidden>{shop_html}
         <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn">{X_ICON}Xにポスト</button>
         <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
-        <p class="maker">作った人: <a href="{X_URL}" rel="noopener" data-track="follow_click">@{SITE['x_handle']}</a>(個人開発)</p>{shop_html}
+        <p class="maker">作った人: <a href="{X_URL}" rel="noopener" data-track="follow_click">@{SITE['x_handle']}</a>(個人開発)</p>
       </div>
       <p class="sr-only" id="result-live" aria-live="polite"></p>
     </section>
