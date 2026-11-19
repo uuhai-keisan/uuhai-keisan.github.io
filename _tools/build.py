@@ -369,7 +369,8 @@ def tool_page(t, tools, today):
     <ul class="related">{related_html}</ul>
   </section>
 ''' if related_html else '') + '</main>\n'
-    return (head(t['title'], t['description'], url, '../', f'{BASE}og/{t["slug"]}.png',
+    # 検索結果・AI検索の要約向けに、metaの説明文だけ「無料・登録不要」と中身の要点を足す(画面のリード文は変えない。11/20 Bingの「説明文が短い」への対応)
+    return (head(t['title'], t['description'] + '無料・登録不要で使えます。計算式と計算例つき。', url, '../', f'{BASE}og/{t["slug"]}.png',
                  noindex=t.get('draft', False), extra='\n'.join(schema) + '\n')
             + body + foot('../', [f'calc.js?v={calc_v}'], pr_note))
 
@@ -398,7 +399,7 @@ def index_page(tools):
 </main>
 '''
     # 公開ツールが0本のトップは中身がないので、検索に出さない
-    return (head(f"{SITE['name']}|無料の計算ツール集", SITE['tagline'] + SITE['intro'], BASE, '', f'{BASE}og/site.png', noindex=not live, extra=schema + '\n')
+    return (head(f"{SITE['name']}|会社員の仕事と暮らしの無料計算ツール集", SITE['tagline'] + SITE['intro'], BASE, '', f'{BASE}og/site.png', noindex=not live, extra=schema + '\n')
             + body + foot(''))
 
 
