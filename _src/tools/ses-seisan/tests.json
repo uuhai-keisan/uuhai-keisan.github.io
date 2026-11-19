@@ -1,0 +1,115 @@
+[
+  {
+    "name": "計算例 上下割 190h",
+    "input": {
+      "price": 500000,
+      "lower": 140,
+      "upper": 180,
+      "worked": 190,
+      "method": "ueshita"
+    },
+    "expect": {
+      "value": "527,770",
+      "details": {
+        "超過時間": "10時間",
+        "超過精算額": "+27,770円",
+        "超過単価(1時間)": "2,777円",
+        "控除単価(1時間)": "3,571円"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "中間割 190h",
+    "input": {
+      "price": 500000,
+      "lower": 140,
+      "upper": 180,
+      "worked": 190,
+      "method": "chukan"
+    },
+    "expect": {
+      "value": "531,250",
+      "details": {
+        "超過単価(1時間)": "3,125円"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "上下割 130h 控除",
+    "input": {
+      "price": 500000,
+      "lower": 140,
+      "upper": 180,
+      "worked": 130,
+      "method": "ueshita"
+    },
+    "expect": {
+      "value": "464,290",
+      "details": {
+        "控除額": "−35,710円"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "幅の中",
+    "input": {
+      "price": 500000,
+      "lower": 140,
+      "upper": 180,
+      "worked": 160,
+      "method": "ueshita"
+    },
+    "expect": {
+      "value": "500,000",
+      "details": {
+        "精算": "なし(140〜180時間の中)"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "ちょうど上限",
+    "input": {
+      "price": 500000,
+      "lower": 140,
+      "upper": 180,
+      "worked": 180,
+      "method": "ueshita"
+    },
+    "expect": {
+      "value": "500,000"
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "下限>上限→エラー",
+    "input": {
+      "price": 500000,
+      "lower": 180,
+      "upper": 140,
+      "worked": 160,
+      "method": "ueshita"
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "単価なし→エラー",
+    "input": {
+      "price": null,
+      "lower": 140,
+      "upper": 180,
+      "worked": 160,
+      "method": "ueshita"
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-11-20"
+  }
+]

@@ -122,10 +122,13 @@ h2 { font-size: 20px; margin: 40px 0 12px; padding-left: 10px; border-left: 4px 
   .calc-output { position: sticky; top: 16px; }
 }
 .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
-.calc-input { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; align-items: end; }
-.field { grid-column: span 2; margin: 0 0 18px; padding: 0; border: 0; min-width: 0; }
-.field-half { grid-column: span 1; }
-@media (max-width: 359px) { .field-half { grid-column: span 2; } }
+.calc-input { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 12px; align-items: end; }
+.field { grid-column: span 6; margin: 0 0 18px; padding: 0; border: 0; min-width: 0; }
+.field-half { grid-column: span 3; }
+.field-third { grid-column: span 2; }
+.field-third label { font-size: 14px; }
+.field-third input { padding-left: 8px; padding-right: 8px; }
+@media (max-width: 359px) { .field-half { grid-column: span 6; } }
 .field label, .field legend { display: block; font-weight: 600; font-size: 15px; margin-bottom: 6px; padding: 0; }
 .input-wrap { position: relative; }
 .input-wrap.has-unit input { padding-right: 4.2em; }
@@ -153,7 +156,7 @@ input[type="date"] { min-height: 48px; line-height: 1.3; }
   min-height: 48px; padding: 0 20px; border-radius: 999px; border: 0; cursor: pointer;
   font: inherit; font-weight: 700; background: var(--accent); color: var(--accent-ink);
 }
-.btn-block, .btn-calc { width: 100%; grid-column: span 2; }
+.btn-block, .btn-calc { width: 100%; grid-column: 1 / -1; }
 .btn-x { width: 100%; background: var(--x-bg); color: var(--x-ink); }
 .x-icon { width: 18px; height: 18px; }
 .btn-sub { width: 100%; background: transparent; color: var(--ink); border: 1px solid var(--field-border); }

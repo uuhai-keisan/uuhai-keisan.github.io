@@ -1,6 +1,7 @@
 {
   "slug": "kosu-buffer",
   "category": "work",
+  "see": ["santen-goukei", "santen-mitsumori", "ses-seisan"],
   "icon": "⏳",
   "updated": "2026-10-09",
   "title": "工数見積もりのバッファ計算|余裕込みの工数と完了予定日を出す",

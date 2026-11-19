@@ -167,7 +167,7 @@ def foot(prefix, scripts=(), note=''):
 
 def field_html(f):
     fid, label = f['id'], esc(f['label'])
-    cls = 'field field-half' if f.get('half') else 'field'
+    cls = 'field field-half' if f.get('half') else 'field field-third' if f.get('third') else 'field'
     if f['type'] == 'select' and len(f['options']) <= 5 and f.get('control') != 'select':
         # 選択肢が少ない項目はボタン並び(中身はラジオボタンなので矢印キーでも選べる)
         opts = ''.join(

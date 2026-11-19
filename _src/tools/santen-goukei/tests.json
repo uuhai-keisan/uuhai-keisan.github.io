@@ -1,0 +1,200 @@
+[
+  {
+    "name": "計算例 3作業 締め切り14日",
+    "input": {
+      "t1o": 2,
+      "t1m": 4,
+      "t1p": 8,
+      "t2o": 3,
+      "t2m": 5,
+      "t2p": 10,
+      "t3o": 1,
+      "t3m": 2,
+      "t3p": 6,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": 14
+    },
+    "expect": {
+      "value": "12.3",
+      "details": {
+        "合計の標準偏差(ばらつき)": "1.7日",
+        "約68%で収まる範囲": "10.6〜14.1日",
+        "約95%で収まる範囲": "8.8〜15.8日",
+        "参考: 最可能値の単純合計": "11.0日",
+        "14.0日以内に終わる確率": "約83%"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "1作業だけ 締め切りなし",
+    "input": {
+      "t1o": 3,
+      "t1m": 6,
+      "t1p": 14,
+      "t2o": null,
+      "t2m": null,
+      "t2p": null,
+      "t3o": null,
+      "t3m": null,
+      "t3p": null,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "時間",
+      "deadline": null
+    },
+    "expect": {
+      "value": "6.8",
+      "details": {
+        "作業の数": "1件",
+        "約68%で収まる範囲": "5.0〜8.7時間"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "ばらつき0 締め切り超え→99%超",
+    "input": {
+      "t1o": 5,
+      "t1m": 5,
+      "t1p": 5,
+      "t2o": null,
+      "t2m": null,
+      "t2p": null,
+      "t3o": null,
+      "t3m": null,
+      "t3p": null,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": 6
+    },
+    "expect": {
+      "value": "5.0",
+      "details": {
+        "6.0日以内に終わる確率": "99%超"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "締め切りが楽観より短い→1%未満",
+    "input": {
+      "t1o": 2,
+      "t1m": 4,
+      "t1p": 8,
+      "t2o": 3,
+      "t2m": 5,
+      "t2p": 10,
+      "t3o": 1,
+      "t3m": 2,
+      "t3p": 6,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": 5
+    },
+    "expect": {
+      "details": {
+        "5.0日以内に終わる確率": "1%未満"
+      }
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "一部だけ入力→エラー",
+    "input": {
+      "t1o": 2,
+      "t1m": null,
+      "t1p": 8,
+      "t2o": null,
+      "t2m": null,
+      "t2p": null,
+      "t3o": null,
+      "t3m": null,
+      "t3p": null,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": null
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "順序が逆→エラー",
+    "input": {
+      "t1o": 8,
+      "t1m": 4,
+      "t1p": 2,
+      "t2o": null,
+      "t2m": null,
+      "t2p": null,
+      "t3o": null,
+      "t3m": null,
+      "t3p": null,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": null
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-11-20"
+  },
+  {
+    "name": "全部空→エラー",
+    "input": {
+      "t1o": null,
+      "t1m": null,
+      "t1p": null,
+      "t2o": null,
+      "t2m": null,
+      "t2p": null,
+      "t3o": null,
+      "t3m": null,
+      "t3p": null,
+      "t4o": null,
+      "t4m": null,
+      "t4p": null,
+      "t5o": null,
+      "t5m": null,
+      "t5p": null,
+      "unit": "日",
+      "deadline": null
+    },
+    "expect": {
+      "error": true
+    },
+    "today": "2026-11-20"
+  }
+]

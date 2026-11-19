@@ -1,6 +1,7 @@
 {
   "slug": "santen-mitsumori",
   "category": "work",
+  "see": ["santen-goukei", "kosu-buffer"],
   "icon": "📐",
   "updated": "2026-10-09",
   "title": "三点見積もり計算|楽観・最可能・悲観から期待値と範囲を出す",

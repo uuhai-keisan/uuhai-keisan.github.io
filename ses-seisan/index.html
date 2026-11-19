@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>SESの精算幅の計算ツール|上下割・中間割で超過・控除の金額と請求額を出す</title>
+<meta name="description" content="月額単価と精算幅(下限・上限)、その月の実稼働時間を入れると、上下割または中間割で超過単価・控除単価と、超過・控除を反映した請求額が分かります。準委任・SES契約の月末の確認に使えます。無料・登録不要で使えます。計算式と計算例つき。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/ses-seisan/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="SESの精算幅の計算ツール|上下割・中間割で超過・控除の金額と請求額を出す">
+<meta property="og:description" content="月額単価と精算幅(下限・上限)、その月の実稼働時間を入れると、上下割または中間割で超過単価・控除単価と、超過・控除を反映した請求額が分かります。準委任・SES契約の月末の確認に使えます。無料・登録不要で使えます。計算式と計算例つき。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/ses-seisan/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/ses-seisan.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=4f635a70">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SESの精算幅の計算",
+  "url": "https://uuhai-keisan.github.io/ses-seisan/",
+  "description": "月額単価と精算幅(下限・上限)、その月の実稼働時間を入れると、上下割または中間割で超過単価・控除単価と、超過・控除を反映した請求額が分かります。準委任・SES契約の月末の確認に使えます。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-11-20",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "SESの精算幅の計算",
+      "item": "https://uuhai-keisan.github.io/ses-seisan/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › <span aria-current="page">SESの精算幅の計算</span></nav>
+  <h1>SESの精算幅の計算</h1>
+  <p class="lead">月額単価と精算幅(下限・上限)、その月の実稼働時間を入れると、上下割または中間割で超過単価・控除単価と、超過・控除を反映した請求額が分かります。準委任・SES契約の月末の確認に使えます。</p>
+  <p class="updated">最終更新: <time datetime="2026-11-20">2026年11月20日</time></p>
+  <p class="tldr">上下割では、超過単価は「月額単価÷上限時間」、控除単価は「月額単価÷下限時間」です。中間割では、どちらも「月額単価÷上限と下限の中間の時間」です。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="SESの精算、今月の請求額は{total}の計算" novalidate>
+      <div class="field"><label for="in-price">月額単価<span class="sr-only">(単位: 円)</span></label><div class="input-wrap has-unit"><input type="number" id="in-price" name="price" inputmode="numeric" min="0" step="1000" value="500000"><span class="unit" aria-hidden="true">円</span></div></div><div class="field field-half"><label for="in-lower">精算幅の下限<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-lower" name="lower" inputmode="numeric" min="0" step="1" value="140"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-upper">精算幅の上限<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-upper" name="upper" inputmode="numeric" min="0" step="1" value="180"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field"><label for="in-worked">その月の実稼働時間<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-worked" name="worked" inputmode="decimal" min="0" step="0.25" value="190"><span class="unit" aria-hidden="true">時間</span></div></div><fieldset class="field"><legend>単価の割り方</legend><div class="seg"><label class="seg-opt"><input type="radio" name="method" value="ueshita" checked><span>上下割(上限・下限で割る)</span></label><label class="seg-opt"><input type="radio" name="method" value="chukan"><span>中間割(中間の時間で割る)</span></label></div></fieldset>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xにポスト</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>SESの精算幅計算の使い方</h2>
+    <ol><li>契約の「月額単価」と、精算幅の「下限」「上限」を入れます。</li><li>その月の「実稼働時間」を入れます。月の途中なら月末までの見込みでも使えます。</li><li>契約の「単価の割り方」(上下割か中間割か)を選びます。</li><li>超過単価・控除単価と、超過・控除を反映した請求額が表示されます。</li></ol>
+    <h2>SESの精算幅の計算式</h2>
+    <p>SES(準委任)契約では、月額単価に「精算幅」(例: 140〜180時間)を決めておき、実稼働時間がその幅の中なら月額単価のまま、上限を超えたら超過分を足し、下限を下回ったら不足分を引くのが一般的です。</p><p>1時間あたりの単価の決め方には主に2つあります。<strong>上下割</strong>は、超過単価を「月額単価÷上限時間」、控除単価を「月額単価÷下限時間」で求めます。超過の単価は低め、控除の単価は高めになります。<strong>中間割</strong>は、超過・控除のどちらも「月額単価÷((上限+下限)÷2)」で求めます。</p><p>請求額は「月額単価+超過時間×超過単価」または「月額単価−不足時間×控除単価」です。このツールは時間単価と精算額の1円未満を切り捨てています。端数の処理、何分単位で数えるか、中間の時間を固定の数字(例: 160時間)にするかは契約によって違うので、契約書を確認してください。</p>
+    <h2>SESの精算幅の計算例</h2>
+    <p>月額単価50万円・精算幅140〜180時間・実稼働190時間・上下割の場合です。超過単価は500,000÷180=2,777.7…で、切り捨てて2,777円です。超過時間は190−180=10時間なので、超過精算額は27,770円、請求額は527,770円です。</p><p>同じ条件で中間割なら、中間の時間は(140+180)÷2=160時間、単価は500,000÷160=3,125円で、超過精算額は31,250円、請求額は531,250円です。実稼働が130時間で上下割なら、控除単価は500,000÷140=3,571.4…で3,571円、不足10時間で35,710円を引き、請求額は464,290円です。</p>
+    <h2>SESの精算幅の早見表</h2>
+    <p>実稼働時間と単価の割り方から出した請求額(円)です。</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="月額単価50万円・精算幅140〜180時間の場合の請求額">
+      <table class="quick-table"><caption>月額単価50万円・精算幅140〜180時間の場合の請求額</caption>
+        <thead><tr><th scope="col">実稼働 \ 割り方</th><th scope="col">上下割</th><th scope="col">中間割</th></tr></thead>
+        <tbody><tr><th scope="row">120時間</th><td>428,580円</td><td>437,500円</td></tr><tr><th scope="row">130時間</th><td>464,290円</td><td>468,750円</td></tr><tr><th scope="row">140時間</th><td>500,000円</td><td>500,000円</td></tr><tr><th scope="row">160時間</th><td>500,000円</td><td>500,000円</td></tr><tr><th scope="row">180時間</th><td>500,000円</td><td>500,000円</td></tr><tr><th scope="row">190時間</th><td>527,770円</td><td>531,250円</td></tr><tr><th scope="row">200時間</th><td>555,540円</td><td>562,500円</td></tr></tbody>
+      </table>
+    </div>
+    <h2>SESの精算幅のよくある質問</h2>
+    <div class="faq"><details><summary>上下割と中間割はどちらが多いですか?</summary><p>解説記事では、上下割がSES業界でよく使われる方法として紹介されています。どちらを使うかは契約で決まるので、注文書や契約書の精算条件を確認してください。</p></details><details><summary>精算幅140〜180時間はよくある幅ですか?</summary><p>解説記事の例では140〜180時間がよく使われていますが、決まった基準はありません。140〜200時間、150〜190時間など、契約ごとに違います。</p></details><details><summary>15分単位や30分単位で数える契約ではどう入れますか?</summary><p>実稼働時間を、契約の単位で切り捨て(または切り上げ)たあとの時間で入れてください。0.25時間=15分、0.5時間=30分です。</p></details><details><summary>月の途中で、あと何時間働けば精算幅に入るか知りたいです。</summary><p>このツールでは、実稼働時間に月末までの見込みを入れると、そのままの請求額が分かります。残りの日に1日何時間働けば下限に届くかは、フレックスの残り勤務時間計算で「総労働時間」に下限の時間を入れると計算できます。</p></details><details><summary>固定精算(精算幅なし)の契約ではどうなりますか?</summary><p>精算幅を設けない固定精算では、稼働時間にかかわらず月額単価のままです。このツールは精算幅のある契約向けです。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://www.ieyasu.co/media/settlement-width/" rel="noopener">労務ジャーナル「【精算幅とは】フリーランスなら知っておきたい契約の仕組み【SES用語】」</a>(上下割・中間割の単価の出し方、月額50万円・140〜180時間の例)</li><li><a href="https://www.oro.com/zac/blog/ses-settlement-rangepost/" rel="noopener">ZAC Blog「精算幅の基礎知識。超過・控除の計算、固定精算との違い」</a>(精算幅と超過・控除、固定精算)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../santen-goukei/">🧮 三点見積もりの合計計算</a></li><li><a href="../flex-fusoku/">↪️ フレックスの不足時間の繰り越し計算</a></li><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../flex-zangyo/">⏱️ フレックスの残業時間計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
+</div></footer>
+<script src="calc.js?v=b2a5f828"></script>
+<script src="../assets/site.js?v=8cf7f7fb"></script>
+</body>
+</html>

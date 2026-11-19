@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>三点見積もりの合計計算ツール|複数タスクの期待値・標準偏差と締め切りに間に合う確率</title>
+<meta name="description" content="作業ごとに楽観・最可能・悲観の3つを入れると、PERT法で全体の期待値と標準偏差、約68%・約95%で収まる範囲が分かります。締め切りを入れれば、間に合う確率の目安も出します。作業は5つまで。無料・登録不要で使えます。計算式と計算例つき。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/santen-goukei/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="三点見積もりの合計計算ツール|複数タスクの期待値・標準偏差と締め切りに間に合う確率">
+<meta property="og:description" content="作業ごとに楽観・最可能・悲観の3つを入れると、PERT法で全体の期待値と標準偏差、約68%・約95%で収まる範囲が分かります。締め切りを入れれば、間に合う確率の目安も出します。作業は5つまで。無料・登録不要で使えます。計算式と計算例つき。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/santen-goukei/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/santen-goukei.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=4f635a70">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "三点見積もりの合計計算",
+  "url": "https://uuhai-keisan.github.io/santen-goukei/",
+  "description": "作業ごとに楽観・最可能・悲観の3つを入れると、PERT法で全体の期待値と標準偏差、約68%・約95%で収まる範囲が分かります。締め切りを入れれば、間に合う確率の目安も出します。作業は5つまで。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-11-20",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "三点見積もりの合計計算",
+      "item": "https://uuhai-keisan.github.io/santen-goukei/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › <span aria-current="page">三点見積もりの合計計算</span></nav>
+  <h1>三点見積もりの合計計算</h1>
+  <p class="lead">作業ごとに楽観・最可能・悲観の3つを入れると、PERT法で全体の期待値と標準偏差、約68%・約95%で収まる範囲が分かります。締め切りを入れれば、間に合う確率の目安も出します。作業は5つまで。</p>
+  <p class="updated">最終更新: <time datetime="2026-11-20">2026年11月20日</time></p>
+  <p class="tldr">全体の期待値は作業ごとの期待値の合計です。ばらつき(標準偏差)はそのまま足さず、作業ごとの標準偏差を2乗して足し、平方根をとります。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="三点見積もりで{n}件の作業を合計したら期待値{e}{unit}" novalidate>
+      <div class="field field-third"><label for="in-t1o">作業1 楽観</label><div class="input-wrap"><input type="number" id="in-t1o" name="t1o" inputmode="decimal" min="0" step="0.1" value="2"></div></div><div class="field field-third"><label for="in-t1m">作業1 最可能</label><div class="input-wrap"><input type="number" id="in-t1m" name="t1m" inputmode="decimal" min="0" step="0.1" value="4"></div></div><div class="field field-third"><label for="in-t1p">作業1 悲観</label><div class="input-wrap"><input type="number" id="in-t1p" name="t1p" inputmode="decimal" min="0" step="0.1" value="8"></div></div><div class="field field-third"><label for="in-t2o">作業2 楽観</label><div class="input-wrap"><input type="number" id="in-t2o" name="t2o" inputmode="decimal" min="0" step="0.1" value="3"></div></div><div class="field field-third"><label for="in-t2m">作業2 最可能</label><div class="input-wrap"><input type="number" id="in-t2m" name="t2m" inputmode="decimal" min="0" step="0.1" value="5"></div></div><div class="field field-third"><label for="in-t2p">作業2 悲観</label><div class="input-wrap"><input type="number" id="in-t2p" name="t2p" inputmode="decimal" min="0" step="0.1" value="10"></div></div><div class="field field-third"><label for="in-t3o">作業3 楽観</label><div class="input-wrap"><input type="number" id="in-t3o" name="t3o" inputmode="decimal" min="0" step="0.1" value="1"></div></div><div class="field field-third"><label for="in-t3m">作業3 最可能</label><div class="input-wrap"><input type="number" id="in-t3m" name="t3m" inputmode="decimal" min="0" step="0.1" value="2"></div></div><div class="field field-third"><label for="in-t3p">作業3 悲観</label><div class="input-wrap"><input type="number" id="in-t3p" name="t3p" inputmode="decimal" min="0" step="0.1" value="6"></div></div><div class="field field-third"><label for="in-t4o">作業4 楽観</label><div class="input-wrap"><input type="number" id="in-t4o" name="t4o" inputmode="decimal" min="0" step="0.1"></div></div><div class="field field-third"><label for="in-t4m">作業4 最可能</label><div class="input-wrap"><input type="number" id="in-t4m" name="t4m" inputmode="decimal" min="0" step="0.1"></div></div><div class="field field-third"><label for="in-t4p">作業4 悲観</label><div class="input-wrap"><input type="number" id="in-t4p" name="t4p" inputmode="decimal" min="0" step="0.1"></div></div><div class="field field-third"><label for="in-t5o">作業5 楽観</label><div class="input-wrap"><input type="number" id="in-t5o" name="t5o" inputmode="decimal" min="0" step="0.1"></div></div><div class="field field-third"><label for="in-t5m">作業5 最可能</label><div class="input-wrap"><input type="number" id="in-t5m" name="t5m" inputmode="decimal" min="0" step="0.1"></div></div><div class="field field-third"><label for="in-t5p">作業5 悲観</label><div class="input-wrap"><input type="number" id="in-t5p" name="t5p" inputmode="decimal" min="0" step="0.1"></div></div><fieldset class="field"><legend>単位</legend><div class="seg"><label class="seg-opt"><input type="radio" name="unit" value="日" checked><span>日</span></label><label class="seg-opt"><input type="radio" name="unit" value="時間"><span>時間</span></label><label class="seg-opt"><input type="radio" name="unit" value="人日"><span>人日</span></label></div></fieldset><div class="field"><label for="in-deadline">締め切りまでの時間(任意、入れると間に合う確率を表示)</label><div class="input-wrap"><input type="number" id="in-deadline" name="deadline" inputmode="decimal" min="0" step="0.1" value="14"></div></div>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xにポスト</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>三点見積もりの合計計算の使い方</h2>
+    <ol><li>作業ごとに「楽観」「最可能」「悲観」の3つを入れます。使わない作業の欄は3つとも空欄にします。</li><li>「単位」を選びます。</li><li>締め切りがあれば「締め切りまでの時間」を入れます。空欄なら確率は出しません。</li><li>全体の期待値・範囲・間に合う確率が表示されます。</li></ol>
+    <h2>三点見積もりの合計の計算式</h2>
+    <p>作業ごとの期待値は「(楽観+4×最可能+悲観)÷6」、標準偏差は「(悲観−楽観)÷6」です(三点見積もり・PERT法)。1つの作業の計算は<a href="../santen-mitsumori/">三点見積もり計算</a>と同じです。</p><p>全体の期待値は、作業ごとの期待値の合計です。全体の標準偏差は、作業どうしが独立だと仮定して「作業ごとの標準偏差の2乗の合計」の平方根で求めます。標準偏差をそのまま足すと、ばらつきを大きく見積もりすぎます。</p><p>範囲は、全体が正規分布に近いとみなして、期待値±標準偏差に約68%、期待値±標準偏差の2倍に約95%で収まるとした目安です。楽観値の合計から悲観値の合計の外には広げません。締め切りまでに終わる確率も同じ近似で、標準正規分布の累積確率から出しています。作業が少ないほど近似は粗くなります。</p><p>「参考: 最可能値の単純合計」は、ふだんどおり進んだ場合の数字を足しただけの値です。期待値より小さいことが多く、これだけで見積もると遅れやすいことが分かります。表示は小数第1位に四捨五入しています。</p>
+    <h2>三点見積もりの合計の計算例</h2>
+    <p>作業1(楽観2日・最可能4日・悲観8日)、作業2(3日・5日・10日)、作業3(1日・2日・6日)の場合です。期待値は作業1が26÷6≒4.33日、作業2が33÷6=5.5日、作業3が15÷6=2.5日で、合計12.3日です。標準偏差は作業1が1日、作業2が7÷6≒1.17日、作業3が5÷6≒0.83日で、2乗の合計は約3.06、平方根をとって全体は約1.7日です。</p><p>約68%で収まる範囲は10.6〜14.1日、約95%は8.8〜15.8日です。最可能値を足しただけだと11.0日なので、それより1日以上長く見ておくのが目安です。締め切りが14日なら、間に合う確率は約83%です。</p>
+    <h2>三点見積もりの合計のよくある質問</h2>
+    <div class="faq"><details><summary>標準偏差をそのまま足してはいけないのですか?</summary><p>作業どうしが独立なら、遅れる作業と早く終わる作業が打ち消し合うので、全体のばらつきは標準偏差の単純な合計より小さくなります。そのため標準偏差は2乗して(分散にして)足し、最後に平方根をとります。同じ原因で全部の作業が一緒に遅れるような場合は独立とは言えないので、範囲を広めに見てください。</p></details><details><summary>作業は5つまでしか入れられませんか?</summary><p>このツールでは5つまでです。それより多いときは、近い作業をまとめて1つにするか、5つずつ計算して、期待値はそのまま足し、標準偏差は2乗して足してから平方根をとってください。</p></details><details><summary>締め切りに間に合う確率はどれくらい信用できますか?</summary><p>作業の数が多いほど、合計は正規分布に近づくとされています。作業が2〜3個だと近似は粗いので、確率は「高いか低いか」の目安として使ってください。楽観値と悲観値をどう決めたかでも大きく変わります。</p></details><details><summary>どの数字を見積もりとして出せばよいですか?</summary><p>期待値は半分くらいの確率で超える数字です。約84%で収まる「期待値+σ」や、締め切りの確率を見ながら、どこまで余裕を持たせるかをチームで決めてください。バッファの割合で見積もるなら、工数見積もりのバッファ計算も使えます。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://en.wikipedia.org/wiki/Three-point_estimation" rel="noopener">Wikipedia「Three-point estimation」(英語)</a>(期待値と標準偏差の式、複数の作業を合計するときの考え方)</li><li><a href="https://en.wikipedia.org/wiki/Program_evaluation_and_review_technique" rel="noopener">Wikipedia「Program evaluation and review technique」(英語)</a>(PERT法)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../shinchoku-kanryo/">📅 進捗率から完了予定日を出す計算</a></li><li><a href="../flex-fusoku/">↪️ フレックスの不足時間の繰り越し計算</a></li><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../flex-zangyo/">⏱️ フレックスの残業時間計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../ses-seisan/">💴 SESの精算幅の計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
+</div></footer>
+<script src="calc.js?v=0420c5a6"></script>
+<script src="../assets/site.js?v=8cf7f7fb"></script>
+</body>
+</html>
