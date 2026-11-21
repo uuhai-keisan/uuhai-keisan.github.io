@@ -20,7 +20,10 @@ for (const slug of fs.readdirSync(root).sort()) {
   for (const t of tests) {
     const r = sandbox.CALC.compute(t.input, { today: t.today });
     const problems = [];
-    if (t.expect.error) { if (!r.error) problems.push('エラーになるはずが結果が出た'); }
+    if (t.expect.error) {
+      if (!r.error) problems.push('エラーになるはずが結果が出た');
+      else if (typeof t.expect.error === 'string' && r.error !== t.expect.error) problems.push(`error ${r.error} != ${t.expect.error}`);
+    }
     else {
       if (r.error) problems.push(`エラー: ${r.error}`);
       if ('value' in t.expect && r.value !== t.expect.value) problems.push(`value ${r.value} != ${t.expect.value}`);

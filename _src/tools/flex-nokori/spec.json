@@ -2,7 +2,7 @@
   "caution": "法的な判断ではありません。扱いは就業規則や労使協定によります。迷ったら人事や労働基準監督署に確認してください。",
   "slug": "flex-nokori",
   "category": "work",
-  "see": ["flex-zangyo", "flex-fusoku"],
+  "see": ["flex-zangyo", "flex-fusoku", "jikan-yukyu"],
   "icon": "🕘",
   "updated": "2026-11-20",
   "title": "フレックスの時間計算ツール|残り勤務時間と1日あたり何時間働けば足りるか",

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-hashes' 'sha256-zLXvjLa9sIHSxNVWxionB3S4ohIwc94xIEu4u3pfU5g='; img-src 'self' data: https://www.googletagmanager.com https://thumbnail.image.rakuten.co.jp; connect-src 'self' https://openapi.rakuten.co.jp https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>時間単位の有給(時間休)の残り計算|7時間45分も何日何時間で</title>
+<meta name="description" content="時間休(時間単位の有給)を取った後の残りが何日と何時間かを計算します。7時間45分などの端数は厚労省の資料どおり8時間に切り上げ、年5日の上限からあと何時間取れるかも表示します。無料・登録不要で使えます。計算式と計算例つき。">
+<link rel="canonical" href="https://uuhai-keisan.github.io/jikan-yukyu/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="uuhai計算帳">
+<meta property="og:title" content="時間単位の有給(時間休)の残り計算|7時間45分も何日何時間で">
+<meta property="og:description" content="時間休(時間単位の有給)を取った後の残りが何日と何時間かを計算します。7時間45分などの端数は厚労省の資料どおり8時間に切り上げ、年5日の上限からあと何時間取れるかも表示します。無料・登録不要で使えます。計算式と計算例つき。">
+<meta property="og:url" content="https://uuhai-keisan.github.io/jikan-yukyu/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://uuhai-keisan.github.io/og/jikan-yukyu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@uuhai0625">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f7f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15181b" media="(prefers-color-scheme: dark)">
+<script src="../assets/theme-init.js?v=6a62a50f"></script>
+<link rel="stylesheet" href="../assets/style.css?v=4f635a70">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "時間単位の有給の残り計算",
+  "url": "https://uuhai-keisan.github.io/jikan-yukyu/",
+  "description": "時間休(時間単位の有給)を取った後の残りが何日と何時間かを計算します。7時間45分などの端数は厚労省の資料どおり8時間に切り上げ、年5日の上限からあと何時間取れるかも表示します。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "dateModified": "2026-11-22",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "uuhai",
+    "url": "https://x.com/uuhai0625"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "uuhai計算帳",
+      "item": "https://uuhai-keisan.github.io/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "時間単位の有給の残り計算",
+      "item": "https://uuhai-keisan.github.io/jikan-yukyu/"
+    }
+  ]
+}
+</script>
+</head>
+<body data-ga="G-5WNZZSH1P4" data-x="uuhai0625">
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap">
+  <a class="site-logo" href="../">uuhai<span>計算帳</span></a>
+  <button class="theme-btn" id="theme-btn" type="button" aria-label="ダークモードに切り替え">🌓</button>
+</div></header>
+<main class="wrap" id="main">
+  <nav class="breadcrumb" aria-label="パンくずリスト"><a href="../">uuhai計算帳</a> › <span aria-current="page">時間単位の有給の残り計算</span></nav>
+  <h1>時間単位の有給の残り計算</h1>
+  <p class="lead">時間休(時間単位の有給)を取った後の残りが何日と何時間かを計算します。7時間45分などの端数は厚労省の資料どおり8時間に切り上げ、年5日の上限からあと何時間取れるかも表示します。</p>
+  <p class="updated">最終更新: <time datetime="2026-11-22">2026年11月22日</time></p>
+  <p class="tldr">時間単位の有給は、1日分を所定労働時間の端数を切り上げた時間(7時間45分なら8時間)として数えます。8時間の人が20日の残りから3時間取ると、残りは19日と5時間です。時間単位で取れるのは、繰越分も含めて年5日以内で労使協定が決めた日数までです。</p>
+  <p class="privacy-note">🔒 入力した数字はこの端末の中だけで計算し、サーバーには送りません。シェアボタンを押したときだけ、結果の一文がXの投稿画面に渡ります。</p>
+
+  <div class="calc">
+    <form class="card calc-input" id="calc-form" method="dialog" data-share="時間休を取ったら有給の残りは{left}" novalidate>
+      <div class="field field-half"><label for="in-shotei_h">1日の所定労働時間(時間)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-shotei_h" name="shotei_h" inputmode="numeric" min="0" max="24" step="1" value="7"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-shotei_m">1日の所定労働時間(分)<span class="sr-only">(単位: 分)</span></label><div class="input-wrap has-unit"><input type="number" id="in-shotei_m" name="shotei_m" inputmode="numeric" min="0" max="59" step="1" value="45"><span class="unit" aria-hidden="true">分</span></div></div><div class="field field-half"><label for="in-days">今の有給の残り(日)<span class="sr-only">(単位: 日)</span></label><div class="input-wrap has-unit"><input type="number" id="in-days" name="days" inputmode="numeric" min="0" step="1" value="12"><span class="unit" aria-hidden="true">日</span></div></div><div class="field field-half"><label for="in-hours">今の有給の残り(時間、なければ0)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-hours" name="hours" inputmode="numeric" min="0" step="1" value="0"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field"><label for="in-take">これから時間単位で取る時間(なければ0)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-take" name="take" inputmode="numeric" min="0" step="1" value="3"><span class="unit" aria-hidden="true">時間</span></div></div><div class="field field-half"><label for="in-used">この1年に時間単位で取った時間(分からなければ0)<span class="sr-only">(単位: 時間)</span></label><div class="input-wrap has-unit"><input type="number" id="in-used" name="used" inputmode="numeric" min="0" step="1" value="0"><span class="unit" aria-hidden="true">時間</span></div></div><fieldset class="field field-half"><legend>時間単位で取れる日数(労使協定)</legend><div class="seg"><label class="seg-opt"><input type="radio" name="limit" value="5" checked><span>年5日</span></label><label class="seg-opt"><input type="radio" name="limit" value="4"><span>年4日</span></label><label class="seg-opt"><input type="radio" name="limit" value="3"><span>年3日</span></label><label class="seg-opt"><input type="radio" name="limit" value="2"><span>年2日</span></label><label class="seg-opt"><input type="radio" name="limit" value="1"><span>年1日</span></label></div></fieldset>
+      <button class="btn btn-block btn-calc" type="submit">結果を見る</button>
+    </form>
+    <section class="calc-output" aria-label="計算結果">
+      <div class="result-card" id="result-card">
+        <p class="result-placeholder" id="result-placeholder">数字を入れると、ここに結果が出ます。</p>
+        <p class="result-error" id="result-error" hidden></p>
+        <div id="result" hidden>
+          <p class="result-example" id="result-example" hidden>例の値で計算しています。自分の数字に変えてみてください。</p>
+          <p class="result-label" id="result-label"></p>
+          <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
+          <dl class="result-details" id="result-details"></dl>
+          <p class="result-note" id="result-note" hidden></p>
+          <p class="result-note result-caution">法的な判断ではありません。1日分の時間数や取れる単位(1時間か2時間か等)は労使協定によります。迷ったら人事や労働基準監督署に確認してください。</p>
+        </div>
+      </div>
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-sub" type="button" id="copy-btn">結果をコピー</button>
+        <button class="btn btn-sub btn-share" type="button" id="share-btn"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Xにポスト</button>
+        <p class="share-sub">URLに入力した数字は含まれません。投稿文はXの画面で確認・編集できます。</p>
+        <p class="maker">作った人: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a>(個人開発)</p>
+      </div>
+      <p class="sr-only" id="result-live" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <section class="content">
+    <h2>時間単位の有給の残り計算の使い方</h2>
+    <ol><li>「1日の所定労働時間」を時間と分に分けて入れます(7時間45分なら7と45)。労使協定や就業規則に「1日分=8時間」のように書いてあれば、その時間を入れます。日によって所定労働時間が違う人は、1年間の1日平均を入れます。</li><li>「今の有給の残り」を日と時間で入れます。給与明細や勤怠システムに出ている残りです。残りが時間だけ(例: 93時間)で出ている人は、日に0、時間に93を入れます。半日の残りがある人は、勤怠システムに出ている時間で時間の欄に足してください。</li><li>「これから時間単位で取る時間」を入れると、取った後の残りが「何日と何時間」で表示されます。0なら今の残りを日と時間に直して表示します。</li><li>時間単位であと何時間取れるかも見たいときは、「この1年に時間単位で取った時間」を入れ、労使協定で決まっている日数を選びます。この1年は、有給が付与された日からの1年のことが多いですが、4月〜3月の会社もあります。分からなければ0のままにすると、残りは正しく出ますが「あと取れる時間」は多めに出ます。</li></ol>
+    <h2>時間単位の有給の残りの計算式</h2>
+    <p>厚生労働省の資料では、時間単位の年次有給休暇(時間単位年休)の1日分の時間数は、1日の所定労働時間をもとに労使協定で決め、1時間に満たない端数は時間単位に切り上げるとされています。7時間30分や7時間45分なら8時間です。日によって所定労働時間が違う場合は、1年間の1日平均の所定労働時間(決まっていなければ、決まっている期間の1日平均)で決めます。</p><p>1日分の時間数=所定労働時間の端数を切り上げた時間(H)、残りの時間の合計=残りの日数×H+残りの時間、取った後の残り=残りの時間の合計−取る時間で、これをHで割った商を日数、余りを時間として「何日と何時間」で表示します。同じ資料の例では、所定労働時間8時間で20日の残りから3時間取ると19日と5時間です。</p><p>時間単位で取れるのは年5日以内で、前年度からの繰越分があっても繰越分を含めて5日以内です。時間単位であと取れる時間=時間単位で取れる日数×H−この1年に時間単位で取った時間です(有給の残りのほうが少なければ、残りが上限になります)。半日単位の有給は時間単位年休とは別の扱いで、この5日の枠を使いません。取れる単位を2時間などにしている会社もあるので、労使協定で確かめてください。</p>
+    <h2>時間単位の有給の残りの計算例</h2>
+    <p>1日の所定労働時間が7時間45分、今の残りが12日、この1年に時間単位で10時間取っていて、これから3時間取る場合です。1日分は7時間45分を切り上げて8時間です。残りは12×8=96時間で、3時間取ると93時間、8で割ると11日と5時間です。</p><p>時間単位で取れるのは年5日×8時間=40時間で、10時間と今回の3時間を使うので、あと27時間(3日と3時間分)取れます。</p>
+    <h2>時間単位の有給の残りのよくある質問</h2>
+    <div class="faq"><details><summary>7時間45分勤務だと、時間休の1日分は何時間ですか?</summary><p>厚生労働省の資料では、1時間に満たない端数は時間単位に切り上げるとされているので、8時間です。8時間分の時間休を取ると、有給が1日減ります。</p></details><details><summary>時間単位の有給は年に何時間まで取れますか?</summary><p>年5日以内の範囲で労使協定で決めた日数までです。1日分が8時間で年5日なら40時間です。前年度から繰り越した分があっても、繰越分を含めて5日以内です。7時間30分の人も、5日×7時間30分=37時間30分を切り上げた38時間ではなく、1日分を8時間に切り上げてから5日分の40時間になります。</p></details><details><summary>時間単位の有給が年5日を超えたらどうなりますか?</summary><p>時間単位では年5日分(1日8時間なら40時間)を超えて取れません。超える分は1日単位か半日単位で取ります。このツールで、時間単位であと何時間取れるかを確かめられます。</p></details><details><summary>時間単位の枠を使い切った後に、1日に満たない時間が残ったらどうなりますか?</summary><p>厚生労働省の資料では、翌年に繰り越す、端数を切り上げて1日として与える、などの対応が考えられるとされています。どちらになるかは会社の規程によるので、就業規則や人事に確認してください。</p></details><details><summary>半日単位の有給を取ると、時間単位の枠は減りますか?</summary><p>減りません。厚生労働省の資料では、半日単位の有給は時間単位年休とは別のもので、半日単位で取っても時間単位で取れる時間数には影響しないとされています。半日の残りを時間で何時間と数えるかは会社によって違うので、勤怠システムに出ている時間で入れてください。</p></details><details><summary>年の途中で所定労働時間が変わったら、時間の残りはどうなりますか?</summary><p>厚生労働省の資料では、日で残っている分は変更後の所定労働時間で1日分を数え、時間で残っている分は所定労働時間に比例して換算し、1時間未満は切り上げるとされています(8時間から4時間に変わると、3日と3時間は3日と2時間)。このツールは入れた所定労働時間で計算するので、時間の残りは換算した後の値を入れてください。</p></details><details><summary>時間休は年5日の取得義務に数えられますか?</summary><p>数えられません。厚生労働省の資料では、法定の有給が年10日以上付与される人に確実に取らせる年5日から、時間単位の取得分は差し引けないとされています。</p></details><details><summary>フレックスタイム制でも時間単位の有給は取れますか?</summary><p>労使協定で時間単位年休を決めていれば取れます。フレックスで今月あと何時間働けばいいかは、フレックスの残り勤務時間計算で確かめられます。</p></details></div>
+    <h2>出典・前提</h2>
+    <ul class="sources"><li><a href="https://www.mhlw.go.jp/content/11200000/tp1216-1l-04.pdf" rel="noopener">厚生労働省「年次有給休暇の時間単位付与」(改正労働基準法の資料)</a>(端数の切り上げ、繰越分を含めて年5日以内、残日数・残時間数の管理の例、半日単位との違い、所定労働時間が変わった場合)</li><li><a href="https://work-holiday.mhlw.go.jp/holiday/time-unit-labor-management-agreement.html" rel="noopener">厚生労働省 働き方・休み方改善ポータルサイト「労使協定の締結」</a>(労使協定で定める項目、年5日の取得義務との関係)</li></ul>
+  </section>
+
+  <section class="content">
+    <h2>ほかの計算ツール</h2>
+    <ul class="related"><li><a href="../flex-nokori/">🕘 フレックスの残り勤務時間計算</a></li><li><a href="../zangyo-mikomi/">📈 残業時間の月末見込み計算</a></li><li><a href="../flex-fusoku/">↪️ フレックスの不足時間の繰り越し計算</a></li><li><a href="../flex-zangyo/">⏱️ フレックスの残業時間計算</a></li><li><a href="../kosu-buffer/">⏳ 工数見積もりのバッファ計算</a></li><li><a href="../kouritsuka-kingaku/">⏱️ 業務効率化の削減時間を金額に換算</a></li><li><a href="../santen-goukei/">🧮 三点見積もりの合計計算</a></li><li><a href="../santen-mitsumori/">📐 三点見積もり計算</a></li></ul>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>計算結果は入力値にもとづく目安です。大事な判断の前には、公式の情報もあわせて確認してください。文章の作成にAIを活用しています。</p>
+  <p><a href="../about/">運営者・プライバシーポリシー</a> / 運営: <a href="https://x.com/uuhai0625" rel="noopener" data-track="follow_click">@uuhai0625</a></p>
+  <p>同じ作者のサイト: <a href="https://uuhai0625.github.io/life-event-calculators/" data-track="sister_click">相場ノート(ご祝儀・香典の相場)</a> / <a href="https://uuhai0625.github.io/side-hustle-calculators/" data-track="sister_click">AI副業そろばん</a> / <a href="https://uuhai0625.github.io/" data-track="sister_click">作品一覧</a></p>
+</div></footer>
+<script src="calc.js?v=4e9c9ac5"></script>
+<script src="../assets/site.js?v=8cf7f7fb"></script>
+</body>
+</html>
