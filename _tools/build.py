@@ -338,7 +338,7 @@ def tool_page(t, tools, today):
           <p class="result-label" id="result-label"></p>
           <p class="result-main"><span class="result-value" id="result-value"></span><span class="result-unit" id="result-unit"></span></p>
           <dl class="result-details" id="result-details"></dl>
-          <p class="result-note" id="result-note" hidden></p>
+          <p class="result-note" id="result-note" hidden></p>{(chr(10) + '          <p class="result-note result-caution">' + esc(t['caution']) + '</p>') if t.get('caution') else ''}
         </div>
       </div>
       <div class="result-actions" id="result-actions" hidden>{shop_html}
