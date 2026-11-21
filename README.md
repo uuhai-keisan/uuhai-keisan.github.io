@@ -36,7 +36,7 @@ _tools/                       build.py / test_calcs.mjs / check.py
 - 日付は spec.json の `updated` 1か所だけを変える(可視・JSON-LD・sitemapに同じ値が出る)
 - 税・医療・投資・保険・薬・妊娠週数は扱わない
 - 事実・制度・相場を含むツールは `sources` に出典を書く
-- `late` は11/20の判定までの印(今は関連リンクの扱いに影響しない)。spec の `see` に書いたslugは、同じカテゴリの関連リンクの先頭に出る
+- `late` は11/20の判定までの印(今は関連リンクの扱いに影響しない)。spec の `see` に書いたslugは、同じカテゴリの関連リンクの先頭に出る。spec の `caution` は結果の下にいつも出す注意書き(労働時間とSESのページで使用、労働時間のページには広告を置かない)
 - 新しい題材は「〜 計算ツール」で探される、自分の数字を入れないと答えが出ないものにする(答えが1つに決まる題材は表示が出てもクリックにならない)
 - `725e701dc9cb54dd9576d164875403d2.txt` はIndexNow(Bing)の鍵で消さない。ページを足す・大きく直したら、そのURLを `api.indexnow.org/indexnow` に送る(host・key・keyLocation・urlList)
 
